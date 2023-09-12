@@ -1,6 +1,6 @@
 # :checkered_flag: ADOTE AÍ
 
-O sistema web tem o intuito de promover a adoção responsável de animais.  
+O sistema web tem o intuito de promover a adoção responsável de animais. Logo, esse ambiente tem o propósito de proporcionar a adoção de animais, como também uma pessoa pode cadastrar um animal para ser adotado.
 
 ## :technologist: Membros da equipe
 
