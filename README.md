@@ -1,24 +1,33 @@
-# :checkered_flag: NOME DO PROJETO
+# :checkered_flag: ADOTE AÍ
 
-Breve descrição do que o seu projeto faz.
+O sistema web tem o intuito de promover a adoção responsável de animais.  
 
 ## :technologist: Membros da equipe
 
-Matrícula, nome e curso dos participantes.
+Gabriel Cavalcanti Alves - Engenharia de Software - 495439
+Ítalo Rodrigues Nascimento - Engenharia de Software - 494845
 
 ## :people_holding_hands: Papéis ou tipos de usuário da aplicação
 
-Informe aqui os tipos de usuário que irão interagir com a aplicação. Ex: administrador, locador, locatario, usuário não logado.
+Usuário não registrado.
+Usuário registrado que irá colocar o(s) animal(is) para adoção.
+Usuário registrado que irá adotar 
+
 
 > Tenha em mente que obrigatoriamente a aplicação deve possuir funcionalidades acessíveis a todos os tipos de usuário e outra funcionalidades restritas a certos tipos de usuários.
 
 ## :spiral_calendar: Entidades ou tabelas do sistema
 
-Liste as principais entidades do sistema.
+Usuário
+Animal
+Comentário
 
 ## :triangular_flag_on_post:	 Principais funcionalidades da aplicação
 
-Descreve ou liste brevemente as principais funcionalidades da aplicação que será desenvolvida. Destaque a funcionalidades que serão acessévies a todos os usuários e aquelas restriras a usuários logados.
+Usuário não registrado: ele poderá só visualizar os animais que estão para adoção
+Usuário registrado:  pode comentar nas publicações dos animais que estão para adoção
+Usuário registrado doador: pode colocar animais para adoção e também pode adotar
+Usuário registrado que pretende adotar: pode adotar animais
 
 
 ----
