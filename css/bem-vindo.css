@@ -1,0 +1,45 @@
+.imagens{
+    display: flex;
+    flex-flow: row wrap;
+    z-index: 1;
+}
+
+img{
+    width: 20%;
+    height: 206.33px;
+}
+
+.bem-vindo{
+    width: 40%;
+    height: 60%;
+    border-radius: 10px;
+    display: flex;
+    flex-flow: column;
+    justify-items: center;
+    align-items: center;
+    background-color: white;
+    position: absolute;
+    top: 125px;
+    left: 405.5px;
+    z-index: 2;
+}
+
+.logo{
+    margin-top: 20px;
+}
+
+span{
+    color: rgb(0, 45, 192);
+}
+
+h2{
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.login, .cadastro{
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
