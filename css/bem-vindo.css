@@ -17,7 +17,8 @@ img{
     flex-flow: column;
     justify-items: center;
     align-items: center;
-    background-color: white;
+    background-color: black;
+    border: 10px solid white;
     position: absolute;
     top: 125px;
     left: 405.5px;
@@ -29,10 +30,11 @@ img{
 }
 
 span{
-    color: rgb(0, 45, 192);
+    color: #0d6efd;
 }
 
 h2{
+    color: white;
     margin-top: 30px;
     margin-bottom: 50px;
 }
@@ -42,4 +44,9 @@ h2{
     margin-bottom: 20px;
     font-size: 20px;
     font-weight: bold;
+}
+
+.login:hover, .cadastro:hover{
+    background-color: rgb(0, 0, 100);
+    border-color: rgb(0, 0, 100);
 }
