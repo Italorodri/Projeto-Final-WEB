@@ -39,14 +39,29 @@ h2{
     margin-bottom: 50px;
 }
 
-.login, .cadastro{
+.loginOuCadastro{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.login{
+    margin-right: 20px;
+}
+
+.cadastro{
+    margin-left: 20px;
+}
+
+.visitante, .login, .cadastro{
     padding: 15px;
     margin-bottom: 20px;
     font-size: 20px;
     font-weight: bold;
 }
 
-.login:hover, .cadastro:hover{
+.visitante:hover, .login:hover, .cadastro:hover{
     background-color: rgb(0, 0, 100);
     border-color: rgb(0, 0, 100);
 }

@@ -1,0 +1,170 @@
+.pagina_central{
+    height: 619px;
+    display: flex;
+}
+
+.col1{
+    background-color: black;
+    width: 15%;
+    height: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    position: fixed;
+}
+
+.col1 ul{
+    height: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    padding: 0px;
+}
+
+.col1 li, .col1 li a{
+    list-style-type: none;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.col1 li{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.col1 li:hover{
+    background-color: white;
+}
+
+.col1 li a{
+    width: 100%;
+    height: 90px;
+    margin-left: 10%;
+    display: flex;
+    align-items: center;
+}
+
+.col1 li a:hover{
+    background-color: white;
+    color: black;
+}
+
+.col1 li a i{
+    padding: 0px;
+    margin-right: 10px;
+    font-size: 30px;
+}
+
+.col2{
+    width: 85%;
+    height: 100%;
+    margin-left: 15%;
+}
+
+header{
+    height: 15%;
+}
+
+.imagens{
+    display: flex;
+    flex-flow: row wrap;
+    z-index: 1;
+}
+
+img{
+    width: 20%;
+    height: 92.5px;
+}
+
+.header_frente{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    top: -92.5px;
+    z-index: 2;
+}
+
+.logout{
+    margin-left: 60px;
+    font-weight: bold;
+    padding: 10px;
+    background-color: rgb(255, 153, 0);
+    border-radius: 5px;
+}
+
+.logout:hover{
+    background-color: rgb(223, 70, 0);
+    color: white;
+}
+
+.perfil{
+    margin-right: 40px;
+    width: 150px;
+    height: 50px;
+    font-weight: bold;
+    border: none;
+    background-color: rgb(0, 145, 12);
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.perfil:hover{
+    background-color: rgb(0, 92, 8);
+    border: none;
+}
+
+button i{
+    font-size: 25px;
+    margin-right: 5px;
+    padding: 0px;
+}
+
+header a{
+    text-decoration: none;
+}
+
+.logout, nav a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+nav{
+    height: 40px;
+    background-color: rgb(0, 86, 199);
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+
+nav div{
+    width: 25%;
+    display: flex;
+}
+
+nav div a{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav div a:hover{
+    color: rgb(0, 86, 199);
+    background-color: white;
+    border-radius: 5px;
+}
+
+.animais{
+    background-color: rgb(0, 119, 255);
+    display: flex;
+    flex-flow: row wrap;
+}

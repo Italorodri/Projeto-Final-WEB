@@ -1,0 +1,43 @@
+.perguntas{
+    margin-left: 25px;
+    margin-top: 25px;
+    margin-right: 25px;
+}
+
+.nome-secao{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    color: rgb(0, 86, 199);
+    border: 5px double rgb(0, 86, 199);
+}
+
+.perguntas ul > li{
+    font-weight: bold;
+    font-size: 28px;
+    color: rgb(0, 86, 199);
+    margin-bottom: 15px;
+}
+
+.perguntas ol > li{
+    font-weight: bold;
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 15px;
+}
+
+p{
+    margin-bottom: 10px;
+    padding-bottom: 30px;
+    font-size: 20px;
+}
+
+p.texto-superior{
+    padding-bottom: 0px;
+}
+
+.perguntas ol{
+    margin-bottom: 20px;
+}
