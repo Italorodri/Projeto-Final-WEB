@@ -45,25 +45,29 @@
                     <div class="col">
                         <div class="form-floating">
                           <input type="text" class="form-control" id="nome" placeholder="Nome" required>
-                          <label for="floatingInput">Nome:</label>
+                          <label for="nome">Nome:</label>
                         </div>
                         <div class="form-floating">
                           <input type="email" class="form-control" id="email" placeholder="email@example.com" required>
-                          <label for="floatingInput">Email:</label>
+                          <label for="email">Email:</label>
                         </div>
                         <div class="form-floating">
                           <input type="password" class="form-control" id="senha" placeholder="Senha" minlength="6" required>
-                          <label for="floatingPassword">Senha:</label>
+                          <label for="senha">Senha:</label>
                         </div>
                         <div class="form-floating">
                           <input type="password" class="form-control" id="confirmar" placeholder="Confirmar senha" required>
-                          <label for="floatingPassword">Confirmação de senha:</label>
+                          <label for="confirmar">Confirmação de senha:</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="tel" class="form-control" id="telefone" placeholder="Nº de telefone" minlength="11" maxlength="11" required>
+                            <label for="telefone">Telefone:</label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="textoData">
                             <h6><strong>Por favor informe sua data de nascimento</strong></h6>
-                            <input type="date" name="data" id="data">
+                            <input type="date" name="data" id="data" required>
                         </div>
 
                         <div class="papelUsuario">
@@ -90,9 +94,8 @@
                 </div>
             </section>
             <footer class="row">
-                <hr>
                 <div class="footer">
-                    <a href="#"><button type="submit" class="inscrever btn btn-primary">Confirmar</button></a>
+                    <a href="home.html"><button type="submit" class="inscrever btn btn-primary">Confirmar</button></a>
                 </div>
             </footer>
         </form>

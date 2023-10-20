@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 .pagina_central{
     height: 619px;
     display: flex;
@@ -62,6 +66,8 @@
     width: 85%;
     height: 100%;
     margin-left: 15%;
+    display: inline-block;
+    position: relative;
 }
 
 header{
@@ -138,11 +144,14 @@ header a{
 }
 
 nav{
+    width: 100%;
     height: 40px;
     background-color: rgb(0, 86, 199);
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
+    position: sticky;
+    top: 0;
 }
 
 nav div{
@@ -158,13 +167,274 @@ nav div a{
 }
 
 nav div a:hover{
-    color: rgb(0, 86, 199);
+    color: white;
+    border-radius: 4px;
+    border-bottom: 4px solid white;
+}
+
+.conteudo {
+    width: 100%;
+    height: 78.6%;
+    display: none;
+    overflow: auto;
+    background-color: rgb(112, 174, 255);
+}
+
+.secao-ativa {
+    display: block;
+}
+
+.linha{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#animais .caixa img{
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+#animais .caixa h2{
+    border: none;
+}
+
+#animais .caixa{
+    margin-top: 20px;
+    margin-left: 25px;
+    margin-bottom: 10px;
+    width: 350px;
+    height: fit-content;
+    box-shadow: 0px 8px 10px black;
+    border-radius: 20px;
     background-color: white;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+#animais .caixa:hover{
+    background-color: rgb(184, 184, 184);
+}
+
+.descricao{
+    display: flex;
+    flex-flow: column wrap;
+}
+
+h2{
+    margin-top: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    align-self: center;
+}
+
+.reduzido{
+    margin-left: 15px;
+}
+
+.card{
+    height: fit-content;
+}
+
+.card img{
+    width: 100%;
+    height: fit-content;
+}
+
+.card-body{
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.botoes{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.adotar{
+    margin-right: 20px;
+}
+
+.btn-comentar{
+    margin-top: 10px;
+}
+
+.page{
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+#caracteristicas .caixa{
+    width: 95%;
+    height: 250px;
+    margin-top: 20px;
+    margin-left: 2.5%;
+    margin-bottom: 20px;
+    box-shadow: 0px 8px 10px black;
+    border-radius: 20px;
+    background-color: white;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+#caracteristicas .caixa img{
+    width: auto;
+    height: 200px;
+    border-radius: 5px;
+    margin-left: 25px;
+    margin-right: 20px;
+}
+
+div.informacao{
+    height: 100%;
+}
+
+div.informacao h2{
+    margin-bottom: 20px;
+}
+
+div.extra p{
+    margin-bottom: 8px;
+}
+
+#caracteristicas .invertido{
+    display: flex;
+    flex-flow: row-reverse wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#caracteristicas .invertido .informacao{
+    margin-left: 25px;
+}
+
+#caracteristicas .invertido img{
+    margin-left: 20px;
+    margin-right: 25px;
+}
+
+#informacoes{
+    background-color: white;
+}
+
+.sobre{
+    margin-top: 50px;
+}
+
+#informacoes .sobre p{
+    font-size: 24px;
+    margin-right: 50px;
+}
+
+#informacoes ul > li{
+    font-weight: bold;
+    font-size: 28px;
+    color: rgb(0, 86, 199);
+    margin-bottom: 15px;
+    margin-left: 50px;
+}
+
+#informacoes ol > li{
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 15px;
+    margin-left: 50px;
+}
+
+#informacoes p{
+    padding-bottom: 30px;
+    font-size: 20px;
+    margin-left: 50px;
+}
+
+.detalhes{
+    width: 100%;
+    height: 275px;
+    display: flex;
+    flex-flow: row wrap;
+    margin-bottom: -20px;
+}
+
+.excecao{
+    margin-bottom: 40px;
+}
+
+#informacoes .lista{
+    width: 675px;
+}
+
+#informacoes .img{
+    width: 400px;
+    height: 100%;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#informacoes img{
+    width: auto;
+    height: 210px;
     border-radius: 5px;
 }
 
-.animais{
-    background-color: rgb(0, 119, 255);
+.ajConteudo{
+    height: 100%;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow:  row wrap;
+}
+
+.col{
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.dados{
+    width: 100%;
+    align-items: center;
+    color: black;
+}
+
+.dados .titulo{
+    margin-top: 50px;
+    margin-bottom: 15px;
+    color: gold;
+    font-size: 48px;
+}
+
+.dados .email, .dados .telefone, .dados .cnpj{
+    width: auto;
+    align-self: flex-start;
+}
+
+.texto_apelativo{
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.dados i.bi{
+    color: black;
+    margin-right: 5px;
+    margin-left: 50px;
+}
+
+i.bi.bi-heart-fill{
+    color: red;
+    margin-left: 0px;
+}
+
+.pix{
+    align-items: center;
+    margin-top: 40px;
+}
+
+#qr_code{
+    width: 300px;
+    height: auto;
+    border-radius: 20px;
 }

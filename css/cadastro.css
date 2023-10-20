@@ -113,9 +113,12 @@ div.col{
     text-decoration: underline;
 }
 
-.footer{
-    display: flex;
-    justify-content: center;
+footer{
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    left: 540px;
+    bottom: 65px;
 }
 
 .inscrever{
