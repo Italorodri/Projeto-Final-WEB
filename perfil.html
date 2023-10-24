@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="./css/perfil.css">
 </head>
 <body>
-    <div class="pagina_central">
+    <div class="pagina_central perfil_page">
         <div class="col1">
             <ul>
-                <li><a href="home.html"><i class="bi bi-house"></i> Página Central</a></li>
-                <li><a href="perfil.html"><i class="bi bi-person-circle"></i> Perfil</a></li>
-                <li><a href="perguntas.html"><i class="bi bi-question-circle"></i> Perguntas</a></li>
-                <li><a href="ajuda.html"><i class="bi bi-chat-right-text-fill"></i> Ajuda</a></li>
-                <li><a href="sobrenos.html"><i class="bi bi-info-circle-fill"></i> Sobre nós</a></li>
+                <li><a href="home.html"><i class="bi bi-house"></i> <span class="nomeTela">Página Central</span></a></li>
+                <li><a href="perfil.html"><i class="bi bi-person-circle"></i> <span class="nomeTela">Perfil</span></a></li>
+                <li><a href="perguntas.html"><i class="bi bi-question-circle"></i> <span class="nomeTela">Perguntas</span></a></li>
+                <li><a href="ajuda.html"><i class="bi bi-chat-right-text-fill"></i> <span class="nomeTela">Ajuda</span></a></li>
+                <li><a href="sobrenos.html"><i class="bi bi-info-circle-fill"></i> <span class="nomeTela">Sobre nós</span></a></li>
             </ul>
         </div>
         <div class="col2">
@@ -32,7 +32,7 @@
                 <div class="header_frente">
                     <a href="login.html" class="logout">Log Out</a>
                     <img src="#" alt="Logo do Adote Aí">
-                    <div></div>
+                    <div class="btn_perfil"></div>
                 </div>
             </header>
             <section>
@@ -40,14 +40,20 @@
                     <div class="foto">
                         <img src="#" alt="Foto de perfil">
                     </div>
-                    <div class="dados_pessoais">
-                        <p class="espaco_up"><strong>Nome:</strong> Nome de usuário</p>
-                        <p><strong>E-mail:</strong> useremail@gmail.com</p>
-                        <p><strong>Telefone:</strong> DD 9XXXXXXXX</p>
-                        <p class="espaco_up"><strong>Deseja:</strong> Adotar/Colocar pra adoção</p>
-                    </div>
-                    <div>
-                        <button type="submit" class="excluir_conta btn btn-danger">Apagar conta</button>
+                    <div class="dados_apagar">
+                        <div class="dados_pessoais">
+                            <div class="col">
+                                <p class="espaco_up"><strong>Nome:</strong> Nome de usuário</p>
+                                <p><strong>E-mail:</strong> useremail@gmail.com</p>
+                                <p><strong>Telefone:</strong> DD 9XXXXXXXX</p>
+                            </div>
+                            <div class="col">
+                                <p class="espaco_up"><strong>Deseja:</strong> Adotar/Colocar pra adoção</p>
+                            </div>
+                        </div>
+                        <div class="apagar_conta">
+                            <button type="submit" class="excluir_conta btn btn-danger">Apagar conta</button>
+                        </div>
                     </div>
                 </div>
                 <div class="content">

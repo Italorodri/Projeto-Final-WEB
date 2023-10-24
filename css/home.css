@@ -3,7 +3,8 @@ html {
 }
 
 .pagina_central{
-    height: 619px;
+    /*height: 100%;
+    height: 619px;*/
     display: flex;
 }
 
@@ -35,6 +36,7 @@ html {
 
 .col1 li{
     width: 100%;
+    padding-left: 20px;
     display: flex;
     align-items: center;
 }
@@ -43,18 +45,21 @@ html {
     background-color: white;
 }
 
+.col1 li:hover a {
+    color: black;
+}
+
 .col1 li a{
     width: 100%;
     height: 90px;
-    margin-left: 10%;
     display: flex;
     align-items: center;
 }
 
-.col1 li a:hover{
+/*.col1 li a:hover{
     background-color: white;
     color: black;
-}
+}*/
 
 .col1 li a i{
     padding: 0px;
@@ -67,11 +72,15 @@ html {
     height: 100%;
     margin-left: 15%;
     display: inline-block;
-    position: relative;
+    /*position: relative;*/
+}
+
+.home .col2{
+    position: fixed;
 }
 
 header{
-    height: 15%;
+    height: 93px;
 }
 
 .imagens{
@@ -174,7 +183,7 @@ nav div a:hover{
 
 .conteudo {
     width: 100%;
-    height: 78.6%;
+    height: 486px;
     display: none;
     overflow: auto;
     background-color: rgb(112, 174, 255);
@@ -201,7 +210,8 @@ nav div a:hover{
 
 #animais .caixa{
     margin-top: 20px;
-    margin-left: 25px;
+    margin-left: 12.5px;
+    margin-right: 12.5px;
     margin-bottom: 10px;
     width: 350px;
     height: fit-content;
@@ -264,6 +274,8 @@ h2{
     width: 100%;
     display: flex;
     flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 #caracteristicas .caixa{
@@ -353,7 +365,8 @@ div.extra p{
 
 .detalhes{
     width: 100%;
-    height: 275px;
+    /*height: 275px;*/
+    height: fit-content;
     display: flex;
     flex-flow: row wrap;
     margin-bottom: -20px;
@@ -369,7 +382,7 @@ div.extra p{
 
 #informacoes .img{
     width: 400px;
-    height: 100%;
+    height: auto;
     margin-left: 20px;
     display: flex;
     justify-content: center;
@@ -382,9 +395,10 @@ div.extra p{
 }
 
 .ajConteudo{
-    height: 100%;
+    /*height: 100%;*/
+    /*height: 486px;*/
     display: flex;
-    flex-flow:  row wrap;
+    flex-flow: row wrap;
 }
 
 .col{
@@ -437,4 +451,462 @@ i.bi.bi-heart-fill{
     width: 300px;
     height: auto;
     border-radius: 20px;
+}
+
+/* Smartphones (600px para baixo) */
+@media only screen and (max-width: 600px) {
+
+    .nomeTela, .btn_perfil{
+        display: none;
+    }
+
+    .header_frente{
+        flex-flow: row-reverse;
+        justify-content: space-evenly;
+    }
+
+    header + nav a{
+        font-size: 14px;
+    }
+
+    .linha{
+        flex-flow: column wrap;
+        align-items: center;
+    }
+
+    #animais .caixa{
+        margin-left: 0px;
+        width: 300px;
+    }
+
+    .modal-dialog{
+        display: flex;
+        justify-content: center;
+    }
+
+    .modal-content{
+        width: 400px;
+    }
+
+    .ajConteudo{
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dados .titulo{
+        margin-top: 40px;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    .pix{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .detalhes{
+        height: fit-content;
+        margin-bottom: 40px;
+    }
+
+    #informacoes ul{
+        padding-left: 0px;
+        padding-right: 10px;
+    }
+
+    #caracteristicas .caixa{
+        height: fit-content;
+        flex-flow: column wrap;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    #caracteristicas .imagem{
+        display: flex;
+        justify-content: center;
+    }
+
+    #caracteristicas .caixa img{
+        width: 90%;
+        height: auto;
+        margin: 0px;
+    }
+
+    div.informacao{
+        width: 100%;
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    #caracteristicas .invertido .informacao{
+        margin-left: 0px;
+    }
+    
+    #caracteristicas .invertido img{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    p.reduzido{
+        margin-left: 30px;
+    }
+
+    h2.reduzido{
+        margin-left: 0px;
+    }
+}
+
+/*Dispostivos Médios (Tablets deitados, até 768px) */
+@media only screen and (min-width: 601px) and (max-width: 782px) {
+
+    .nomeTela{
+        display: none;
+    }
+
+    .col1 li a{
+        justify-content: center;
+    }
+
+    .col1 li{
+        padding-left: 0px;
+    }
+
+    .col1 li a i{
+        margin-right: 0px;
+    }
+
+    header + nav a{
+        font-size: 16px;
+    }
+
+    .linha{
+        width: 100%;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    #animais .caixa{
+        width: 275px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .modal-dialog{
+        display: flex;
+        justify-content: center;
+    }
+
+    .modal-content{
+        width: 425px;
+    }
+
+    .ajConteudo{
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dados .titulo{
+        margin-top: 40px;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    .pix{
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .detalhes{
+        flex-flow: column nowrap;
+        height: fit-content;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    #informacoes ul{
+        padding-left: 0px;
+        padding-right: 10px;
+    }
+
+    .lista ol{
+        padding-left: 110px;
+        padding-right: 90px;
+    }
+
+    .detalhes .img{
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #caracteristicas .caixa{
+        width: 70%;
+        height: fit-content;
+        flex-flow: column wrap;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    #caracteristicas .imagem{
+        display: flex;
+        justify-content: center;
+    }
+
+    #caracteristicas .caixa img{
+        width: auto;
+        height: 210px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    div.informacao{
+        width: 100%;
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    #caracteristicas .invertido .informacao{
+        margin-left: 0px;
+    }
+    
+    #caracteristicas .invertido img{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    p.reduzido{
+        margin-left: 30px;
+    }
+
+    h2.reduzido{
+        margin-left: 0px;
+    }
+}
+
+@media only screen and (min-width: 783px) and (max-width: 920px) {
+    #animais .caixa{
+        width: 250px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .linha{
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .ajConteudo{
+        margin-bottom: 20px;
+    }
+
+    .dados .titulo{
+        margin-top: 40px;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    .pix{
+        justify-content: center;
+    }
+
+    .detalhes{
+        flex-flow: column nowrap;
+        height: fit-content;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    #informacoes ul > li{
+        margin-left: 15px;
+    }
+
+    .lista ol{
+        padding-left: 20px;
+        padding-right: 50px;
+    }
+
+    .detalhes .img{
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .page{
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+    }
+
+    #caracteristicas .caixa{
+        width: 40%;
+        height: fit-content;
+        flex-flow: column wrap;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    #caracteristicas .imagem{
+        display: flex;
+        justify-content: center;
+    }
+
+    #caracteristicas .caixa img{
+        width: 90%;
+        height: auto;
+        margin: 0px;
+    }
+
+    div.informacao{
+        width: 100%;
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    #caracteristicas .invertido .informacao{
+        margin-left: 0px;
+    }
+    
+    #caracteristicas .invertido img{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    p.reduzido{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    h2.reduzido{
+        margin-left: 0px;
+    }
+}
+
+/* Dispostivos Largos (laptops/desktops, 992px para cima) */
+@media only screen and (min-width: 770px) and (max-width: 1022px) {
+    .col1 li{
+        padding-left: 0px;
+    }
+
+    .col1 li a{
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .col1 li a i{
+        margin-right: 0px;
+    }
+    
+    .linha{
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .ajConteudo{
+        margin-bottom: 20px;
+    }
+
+    .dados .titulo{
+        margin-top: 40px;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    .pix{
+        justify-content: center;
+    }
+
+    .detalhes{
+        flex-flow: column nowrap;
+        height: fit-content;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    #informacoes ul > li{
+        margin-left: 50px;
+    }
+
+    .lista ol{
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    .detalhes .img{
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media only screen and (min-width: 921px) {
+    #caracteristicas .invertido{
+        display: flex;
+        flex-flow: row-reverse nowrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #caracteristicas .caixa{
+        height: 270px;
+    }
+}
+
+/*
+#caracteristicas .invertido{
+        display: flex;
+        flex-flow: row-reverse nowrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+*/
+
+/* Super Largos (Telas maiores laptops, desktops e até TVs, 1200px para cima) */
+@media only screen and (min-width: 1023px) {
+    .linha{
+        justify-content: space-evenly;
+    }
+
+    .ajConteudo{
+        margin-bottom: 20px;
+    }
+
+    .dados .titulo{
+        margin-top: 40px;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    .pix{
+        justify-content: center;
+    }
+
+    .dados .titulo{
+        margin-top: 40px;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    .detalhes{
+        flex-flow: row wrap;
+        margin-bottom: 40px;
+    }
+
+    #informacoes div.lista{
+        width: 50%;
+    }
+
+    .lista ol, .lista li{
+        margin-left: 0px;
+    }
+
+    #informacoes .img{
+        width: 50%;
+        margin-left: 0px;
+    }
 }

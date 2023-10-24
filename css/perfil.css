@@ -246,3 +246,235 @@ option{
     background-size: 20px 20px;
     background-position-x: 120px;
 }
+
+/* Smartphones (600px para baixo) */
+@media only screen and (max-width: 600px) {
+    .profile{
+        height: fit-content;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        margin-bottom: 35px;
+    }
+
+    .dados_apagar{
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+
+    .dados_pessoais{
+        width: 100%;
+        height: fit-content;
+        margin-top: 20px;
+    }
+
+    .dados_pessoais p{
+        margin-left: 45px;
+    }
+
+    .espaco_up{
+        margin-top: 0px;
+    }
+
+    .profile button{
+        margin-top: 25px;
+        margin-left: 0px;
+    }
+}
+
+/*Dispostivos Médios (Tablets deitados, até 768px) */
+@media only screen and (min-width: 601px) and (max-width: 782px) {
+    .profile{
+        height: fit-content;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        margin-bottom: 35px;
+    }
+
+    .dados_apagar{
+        width: 100%;
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .dados_pessoais{
+        width: fit-content;
+        height: fit-content;
+        margin-top: 20px;
+    }
+
+    .dados_pessoais p{
+        margin-left: 45px;
+    }
+
+    .espaco_up{
+        margin-top: 0px;
+    }
+
+    .profile button{
+        margin-top: 25px;
+        margin-left: 0px;
+    }
+}
+
+@media only screen and (min-width: 783px) and (max-width: 920px) {
+    .profile{
+        width: 100%;
+        height: 150px;
+        margin-bottom: 35px;
+    }
+
+    .foto{
+        width: 25%;
+    }
+
+    .dados_apagar{
+        width: 75%;
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .dados_pessoais{
+        width: fit-content;
+        height: fit-content;
+        margin-top: 20px;
+    }
+
+    .dados_pessoais p{
+        margin-left: 45px;
+    }
+
+    .espaco_up{
+        margin-top: 0px;
+    }
+
+    .apagar_conta{
+        margin-right: 25px;
+    }
+
+    .profile button{
+        margin-top: 25px;
+        margin-left: 0px;
+    }
+}
+
+@media only screen and (min-width: 921px) and (max-width: 1022px) {
+    .profile{
+        width: 100%;
+        height: 190px;
+        justify-content: space-around;
+    }
+
+    .foto{
+        width: 25%;
+    }
+
+    .dados_apagar{
+        width: 75%;
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .dados_pessoais{
+        width: fit-content;
+        height: fit-content;
+    }
+
+    .espaco_up{
+        margin-top: 0px;
+    }
+
+    .apagar_conta{
+        margin-right: 25px;
+    }
+
+    .profile button{
+        margin-left: 0px;
+    }
+}
+
+/* Super Largos (Telas maiores laptops, desktops e até TVs, 1200px para cima) */
+@media only screen and (min-width: 1023px) and (max-width: 1112px) {
+    .profile{
+        width: 100%;
+        height: 190px;
+        justify-content: space-evenly;
+    }
+
+    .dados_apagar{
+        width: 75%;
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .foto{
+        width: 25%;
+    }
+    
+    .dados_pessoais{
+        width: fit-content;
+        height: fit-content;
+    }
+
+    .apagar_conta{
+        display: flex;
+        justify-content: end;
+        margin-right: 25px;
+    }
+    
+    .profile button{
+        margin-left: 0px;
+    }
+
+    .espaco_up{
+        margin-top: 0px;
+    }
+}
+
+@media only screen and (min-width: 1113px) {
+    .foto{
+        width: 25%;
+    }
+
+    .dados_apagar{
+        width: 75%;
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .dados_pessoais{
+        width: fit-content;
+        height: fit-content;
+        flex-flow: row wrap;
+        margin-top: 10px;
+    }
+
+    .apagar_conta{
+        width: 25%;
+        display: flex;
+        justify-content: end;
+        margin-right: 25px;
+    }
+    
+    .profile button{
+        margin-left: 0px;
+    }
+
+    .espaco_up{
+        margin-top: 0px;
+    }
+}
