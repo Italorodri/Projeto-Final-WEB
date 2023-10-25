@@ -1,3 +1,9 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .imagens{
     display: flex;
     flex-flow: row wrap;
@@ -10,8 +16,8 @@ img{
 }
 
 .bem-vindo{
-    width: 40%;
-    height: 60%;
+    width: 45%;
+    height: fit-content;
     border-radius: 10px;
     display: flex;
     flex-flow: column;
@@ -20,13 +26,14 @@ img{
     background-color: black;
     border: 10px solid white;
     position: absolute;
-    top: 125px;
-    left: 405.5px;
     z-index: 2;
 }
 
 .logo{
+    width: 150px;
+    height: auto;
     margin-top: 20px;
+    border-radius: 80px;
 }
 
 span{
@@ -35,8 +42,8 @@ span{
 
 h2{
     color: white;
-    margin-top: 30px;
-    margin-bottom: 50px;
+    margin-top: 15px;
+    margin-bottom: 30px;
 }
 
 .loginOuCadastro{
@@ -64,4 +71,57 @@ h2{
 .visitante:hover, .login:hover, .cadastro:hover{
     background-color: rgb(0, 0, 100);
     border-color: rgb(0, 0, 100);
+}
+
+@media only screen and (min-width: 100px)  and (max-width: 1100px){
+    img{
+        height: 201.5px;
+    }
+
+    .visitante, .login, .cadastro{
+        width: fit-content;
+        height: 50px;
+        display: flex;
+        align-items: center;
+    }
+
+    a{
+        width: fit-content;
+        height: 50px;
+        text-decoration: none;
+        margin-bottom: 20px;
+    }
+}
+
+/* Smartphones (600px para baixo) */
+@media only screen and (max-width: 600px) {
+    .bem-vindo{
+        width: 80%;
+    }
+}
+
+/*Dispostivos Médios (Tablets deitados, até 768px) */
+@media only screen and (min-width: 601px) and (max-width: 782px) {
+    .bem-vindo{
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width: 783px) and (max-width: 920px) {
+    .bem-vindo{
+        width: 60%;
+    }
+}
+
+@media only screen and (min-width: 921px) and (max-width: 1022px) {
+    .bem-vindo{
+        width: 50%;
+    }
+}
+
+/* Super Largos (Telas maiores laptops, desktops e até TVs, 1200px para cima) */
+@media only screen and (min-width: 1023px) and (max-width: 1112px) {
+    .bem-vindo{
+        width: 45%;
+    }
 }

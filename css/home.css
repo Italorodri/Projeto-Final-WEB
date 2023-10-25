@@ -80,7 +80,7 @@ html {
 }
 
 header{
-    height: 93px;
+    height: 100px;
 }
 
 .imagens{
@@ -89,18 +89,19 @@ header{
     z-index: 1;
 }
 
-img{
+.imagens img{
     width: 20%;
-    height: 92.5px;
+    height: 100px;
 }
 
 .header_frente{
+    height: 100px;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
     position: relative;
-    top: -92.5px;
+    top: -100px;
     z-index: 2;
 }
 
@@ -115,6 +116,13 @@ img{
 .logout:hover{
     background-color: rgb(223, 70, 0);
     color: white;
+}
+
+.header_frente img{
+    width: auto;
+    height: 90px;
+    border-radius: 90px;
+    position: 0;
 }
 
 .perfil{
@@ -196,6 +204,7 @@ nav div a:hover{
 .linha{
     display: flex;
     flex-flow: row wrap;
+    padding-bottom: 30px;
 }
 
 #animais .caixa img{
@@ -589,7 +598,7 @@ i.bi.bi-heart-fill{
 
     #animais .caixa{
         width: 275px;
-        margin-left: 0px;
+        margin-left: 5px;
         margin-right: 0px;
     }
 
@@ -690,7 +699,7 @@ i.bi.bi-heart-fill{
 @media only screen and (min-width: 783px) and (max-width: 920px) {
     #animais .caixa{
         width: 250px;
-        margin-left: 0px;
+        margin-left: 5px;
         margin-right: 0px;
     }
 

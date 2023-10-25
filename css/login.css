@@ -1,3 +1,9 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .imagens{
     display: flex;
     flex-flow: row wrap;
@@ -11,7 +17,7 @@ img{
 
 .login{
     width: 40%;
-    height: 68%;
+    height: fit-content;
     border-radius: 10px;
     display: flex;
     flex-flow: column;
@@ -19,8 +25,6 @@ img{
     align-items: center;
     background-color: black;
     position: absolute;
-    top: 125px;
-    left: 405.5px;
     border: 10px solid white;
     z-index: 2;
 }
@@ -47,7 +51,7 @@ label{
 }
 
 .form-floating{
-    width: 50%;
+    width: 70%;
 }
 
 .email{
@@ -79,4 +83,63 @@ footer{
 .voltar:hover{
     background-color: #ff0019;
     border-color: #ff0019;
+}
+
+@media only screen and (min-width: 100px) and (max-width: 1100px){
+    img{
+        height: 201.5px;
+    }
+}
+
+/* Smartphones (600px para baixo) */
+@media only screen and (max-width: 600px) {
+    .login{
+        width: 80%;
+    }
+
+    .form-floating{
+        width: 70%;
+    }
+}
+
+/*Dispostivos Médios (Tablets deitados, até 768px) */
+@media only screen and (min-width: 601px) and (max-width: 782px) {
+    .login{
+        width: 70%;
+    }
+
+    .form-floating{
+        width: 65%;
+    }
+}
+
+@media only screen and (min-width: 783px) and (max-width: 920px) {
+    .login{
+        width: 60%;
+    }
+
+    .form-floating{
+        width: 70%;
+    }
+}
+
+@media only screen and (min-width: 921px) and (max-width: 1022px) {
+    .login{
+        width: 50%;
+    }
+
+    .form-floating{
+        width: 70%;
+    }
+}
+
+/* Super Largos (Telas maiores laptops, desktops e até TVs, 1200px para cima) */
+@media only screen and (min-width: 1023px) and (max-width: 1112px) {
+    .login{
+        width: 45%;
+    }
+
+    .form-floating{
+        width: 70%;
+    }
 }
