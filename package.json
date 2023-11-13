@@ -1,0 +1,12 @@
+{
+  "name": "projeto-final-web",
+  "version": "1.0.0",
+  "description": "O sistema web tem o intuito de promover a adoção responsável de animais. Logo, esse ambiente tem o propósito de proporcionar a adoção de animais, como também uma pessoa pode cadastrar um animal para ser adotado.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
