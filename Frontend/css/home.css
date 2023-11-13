@@ -199,6 +199,10 @@ nav div a:hover{
     background-color: rgb(112, 174, 255);
 }
 
+#ajudenos{
+    
+}
+
 .secao-ativa {
     display: block;
 }
@@ -455,13 +459,13 @@ i.bi.bi-heart-fill{
 
 .pix{
     align-items: center;
-    margin-top: 40px;
 }
 
 #qr_code{
     width: 300px;
     height: auto;
     border-radius: 20px;
+    margin-top: 37px;
 }
 
 /* Smartphones (600px para baixo) */
