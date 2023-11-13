@@ -63,7 +63,7 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 | --- | --- | --- | --- | --- |
 | Usuário |  |    |  |  |
 | Animal  | X |  X  |  X | X |
-| Comentário  | X |    |  |  |
+| Comentário  | X |  X  |  |  |
 
 > Lembre-se que é necessário implementar o CRUD de pelo menos duas entidades.
 
