@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
-    <title>Seja Bem-vindo ao Adote Aí</title>
-    <link rel="stylesheet" href="./css/bem-vindo.css">
-</head>
-<body>
+<template>
     <div class="imagens">
         <img src="https://images.pexels.com/photos/16652378/pexels-photo-16652378/free-photo-of-animais-bichos-bandana-lenco.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="cachorro para adocao">
         <img src="https://images.pexels.com/photos/3790942/pexels-photo-3790942.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="cachorro para adocao">
@@ -28,18 +18,23 @@
         <img src="https://img.freepik.com/fotos-premium/filhotes-super-fofos-na-gaiola-de-caes-sem-teto_609103-1482.jpg?w=740" alt="">
         <img src="https://img.freepik.com/fotos-premium/cao-sem-teto-na-rua-da-cidade-velha-problema-animal-sem-teto_639444-156.jpg?w=740" alt="">
     </div>
-    <div class="bem-vindo">
-        <img class="logo" src="./img/logo.png" alt="Logo">
-        <h2><strong>Seja Bem-Vindo ao <span class="text-primary">Adote Aí!</span></strong></h2>
-        <div class="loginOuCadastro">
-            <a href="login.html"><button class="login btn btn-primary">Fazer Login</button></a>
-            <a href="cadastro.html"><button class="cadastro btn btn-primary">Cadastrar-se</button></a>
-        </div>
-        <a href="home.html"><button class="visitante btn btn-primary">Sou visitante</button></a>
-    </div>
+</template>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
-</body>
-</html>
+<script>
+    export default ({
+        name: "ImagensBG"
+    })
+</script>
+
+<style scoped>
+    .imagens{
+        display: flex;
+        flex-flow: row wrap;
+        z-index: 1;
+    }
+
+    img{
+        width: 20%;
+        height: 206.33px;
+    }
+</style>

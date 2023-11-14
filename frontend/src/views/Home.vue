@@ -1,55 +1,25 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
-    <title>Página Central</title>
-    <link rel="stylesheet" href="./css/home.css">
-</head>
-<body>
+<template>
+  <div class="home_page">
     <div class="pagina_central home">
-        <div class="col1">
-            <ul>
-                <li><a href="home.html"><i class="bi bi-house"></i> <span class="nomeTela">Página Central</span></a></li>
-                <li><a href="perfil.html"><i class="bi bi-person-circle"></i> <span class="nomeTela">Perfil</span></a></li>
-                <li><a href="perguntas.html"><i class="bi bi-question-circle"></i> <span class="nomeTela">Perguntas</span></a></li>
-                <li><a href="ajuda.html"><i class="bi bi-chat-right-text-fill"></i> <span class="nomeTela">Ajuda</span></a></li>
-                <li><a href="sobrenos.html"><i class="bi bi-info-circle-fill"></i> <span class="nomeTela">Sobre nós</span></a></li>
-            </ul>
-        </div>
+        <Coluna1 />
         <div class="col2">
-            <header>
-                <div class="imagens">
-                    <img src="https://images.pexels.com/photos/16652378/pexels-photo-16652378/free-photo-of-animais-bichos-bandana-lenco.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="cachorro para adocao">
-                    <img src="https://images.pexels.com/photos/3790942/pexels-photo-3790942.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="cachorro para adocao">
-                    <img src="https://images.pexels.com/photos/18225434/pexels-photo-18225434/free-photo-of-abandonado-perdido-fotografia-animal-fotografia-de-animais.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="gatos para adocao">
-                    <img src="https://images.pexels.com/photos/1416787/pexels-photo-1416787.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="gatos para adocao">
-                    <img src="https://images.pexels.com/photos/3581058/pexels-photo-3581058.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="cachorro para adocao">
-                </div>
-                <div class="header_frente">
-                    <a href="login.html" class="logout">Log Out</a>
-                    <img src="./img/logo.png" alt="Logo do Adote Aí">
-                    <a href="perfil.html" class="btn_perfil"><button class="perfil btn btn-secondary"><i class="bi bi-person"></i>  Username</button></a>
-                </div>
-            </header>
+            <Header :mostrar_btn="mostrar_btn" />
             <nav>
                 <div>
-                    <a href="#animais">Animais</a>
+                    <a href="#" @click="mostrarSecao('animais')">Animais</a>
                 </div>
                 <div>
-                    <a href="#caracteristicas">Características</a>
+                    <a href="#" @click="mostrarSecao('caracteristicas')">Características</a>
                 </div>
                 <div>
-                    <a href="#informacoes">Informações</a>
+                    <a href="#" @click="mostrarSecao('informacoes')">Informações</a>
                 </div>
                 <div>
-                    <a href="#ajudenos">Ajude-nos</a>
+                    <a href="#" @click="mostrarSecao('ajudenos')">Ajude-nos</a>
                 </div>
             </nav>
 
-            <section id="animais" class="conteudo secao-ativa">
+            <section id="animais" class="conteudo secao-ativa" v-show="secaoAtiva === 'animais'">
                 <div class="linha">
                     <div class="caixa" data-bs-toggle="modal" data-bs-target=".animal1">
                         <img src="https://images.pexels.com/photos/15347387/pexels-photo-15347387/free-photo-of-animal-bicho-fotografia-animal-fotografia-de-animais.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1260&amp;h=750&amp;dpr=1" alt="grátis Foto profissional grátis de animal, cachorro, cachorros Foto profissional">
@@ -146,7 +116,7 @@
                 </div>
             </section>
             
-            <section id="caracteristicas" class="conteudo">
+            <section id="caracteristicas" class="conteudo secao-ativa" v-show="secaoAtiva === 'caracteristicas'">
                 <div class="page">
                     <div class="caixa">
                         <div class="imagem">
@@ -261,7 +231,7 @@
                 </div>
             </section>
             
-            <section id="informacoes" class="conteudo">
+            <section id="informacoes" class="conteudo secao-ativa" v-show="secaoAtiva === 'informacoes'">
                 <div class="sobre">
                     <p><strong>Aqui apresentamos os cuidados necessários que se deve ter com o(s) animal(ais) de estimação de forma mais detalhada. Por favor, pedimos que preste atenção a estes detalhes pois é importante tanto para o seu bichinho quanto para o ambiente de sua casa.</strong></p>
                 </div>
@@ -381,7 +351,7 @@
                 </ul>
             </section>
             
-            <section id="ajudenos" class="conteudo">
+            <section id="ajudenos" class="conteudo secao-ativa" v-show="secaoAtiva === 'ajudenos'">
                 <div class="ajConteudo">
                     <div class="col dados">
                         <p class="titulo"><strong>Ajude o nosso projeto</strong></p>
@@ -391,18 +361,830 @@
                         <p class="cnpj"><i class="bi bi-file-earmark-text"></i><strong>CNPJ:</strong> <i><u>30.025.805/0001-50</u></i></p>
                     </div>
                     <div class="col pix">
-                        <img src="./img/qrcode.png" id="qr_code">
+                        <img src="/img/qrcode.png" id="qr_code">
                         <h2>CÓDIGO QR</h2>
-                        <h4>Nome: <u>Adote Aí Secretaria</u></h3>
+                        <h4>Nome: <u>Adote Aí Secretaria</u></h4>
                     </div>
                 </div>
             </section>
         </div>
     </div>
-    
-    <script src="./javaScript/home.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
-</body>
-</html>
+  </div>
+</template>
+
+<script>
+    import Coluna1 from '../components/Coluna1.vue'
+    import Header from '../components/Header.vue'
+
+    export default ({
+        name: "Home",
+        data(){
+            return {
+                secaoAtiva: 'animais',
+                mostrar_btn: false
+            }
+        },
+        components:{
+          Coluna1,
+          Header
+        },
+        methods:{
+            mostrarSecao(secao) {
+                // Ocultando todas as seções
+                this.secaoAtiva = secao;
+            }
+        },
+        mounted(){
+            
+        }
+    })
+</script>
+
+<style scoped>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    .pagina_central{
+        /*height: 100%;
+        height: 619px;*/
+        display: flex;
+    }
+
+    .col2{
+        width: 85%;
+        height: 100%;
+        margin-left: 15%;
+        display: inline-block;
+    }
+
+    nav a{
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    nav{
+        width: 100%;
+        height: 40px;
+        background-color: rgb(0, 86, 199);
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+        position: sticky;
+        top: 0;
+    }
+
+    nav div{
+        width: 25%;
+        display: flex;
+    }
+
+    nav div a{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    nav div a:hover{
+        color: white;
+        border-radius: 4px;
+        border-bottom: 4px solid white;
+        transition: .25s;
+    }
+
+    .conteudo {
+        width: 100%;
+        /*height: 486px;*/
+        height: 467px;
+        display: none;
+        overflow: auto;
+        background-color: rgb(112, 174, 255);
+    }
+
+    .secao-ativa {
+        display: block;
+    }
+
+    .linha{
+        display: flex;
+        flex-flow: row wrap;
+        padding-bottom: 30px;
+    }
+
+    #animais .caixa img{
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+    }
+
+    #animais .caixa h2{
+        border: none;
+    }
+
+    #animais .caixa{
+        margin-top: 20px;
+        margin-left: 12.5px;
+        margin-right: 12.5px;
+        margin-bottom: 10px;
+        width: 350px;
+        height: fit-content;
+        box-shadow: 0px 8px 10px black;
+        border-radius: 20px;
+        background-color: white;
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    #animais .caixa:hover{
+        background-color: rgb(184, 184, 184);
+    }
+
+    .descricao{
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    h2{
+        margin-top: 20px;
+        margin-bottom: 15px;
+        display: flex;
+        align-self: center;
+    }
+
+    .reduzido{
+        margin-left: 15px;
+    }
+
+    .card{
+        height: fit-content;
+    }
+
+    .card img{
+        width: 100%;
+        height: fit-content;
+    }
+
+    .card-body{
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    .botoes{
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .adotar{
+        margin-right: 20px;
+    }
+
+    .btn-comentar{
+        margin-top: 10px;
+    }
+
+    .page{
+        width: 100%;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #caracteristicas .caixa{
+        width: 95%;
+        height: 250px;
+        margin-top: 20px;
+        margin-left: 2.5%;
+        margin-bottom: 20px;
+        box-shadow: 0px 8px 10px black;
+        border-radius: 20px;
+        background-color: white;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+    }
+
+    #caracteristicas .caixa img{
+        width: auto;
+        height: 200px;
+        border-radius: 5px;
+        margin-left: 25px;
+        margin-right: 20px;
+    }
+
+    div.informacao{
+        height: 100%;
+    }
+
+    div.informacao h2{
+        margin-bottom: 20px;
+    }
+
+    div.extra p{
+        margin-bottom: 8px;
+    }
+
+    #caracteristicas .invertido{
+        display: flex;
+        flex-flow: row-reverse wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #caracteristicas .invertido .informacao{
+        margin-left: 25px;
+    }
+
+    #caracteristicas .invertido img{
+        margin-left: 20px;
+        margin-right: 25px;
+    }
+
+    #informacoes{
+        background-color: white;
+    }
+
+    .sobre{
+        margin-top: 50px;
+    }
+
+    #informacoes .sobre p{
+        font-size: 24px;
+        margin-right: 50px;
+    }
+
+    #informacoes ul > li{
+        font-weight: bold;
+        font-size: 28px;
+        color: rgb(0, 86, 199);
+        margin-bottom: 15px;
+        margin-left: 50px;
+    }
+
+    #informacoes ol > li{
+        font-weight: bold;
+        font-size: 20px;
+        color: rgb(0, 0, 0);
+        margin-bottom: 15px;
+        margin-left: 50px;
+    }
+
+    #informacoes p{
+        padding-bottom: 30px;
+        font-size: 20px;
+        margin-left: 50px;
+    }
+
+    .detalhes{
+        width: 100%;
+        /*height: 275px;*/
+        height: fit-content;
+        display: flex;
+        flex-flow: row wrap;
+        margin-bottom: -20px;
+    }
+
+    .excecao{
+        margin-bottom: 40px;
+    }
+
+    #informacoes .lista{
+        width: 675px;
+    }
+
+    #informacoes .img{
+        width: 400px;
+        height: auto;
+        margin-left: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    #informacoes img{
+        width: auto;
+        height: 210px;
+        border-radius: 5px;
+    }
+
+    .ajConteudo{
+        /*height: 100%;*/
+        /*height: 486px;*/
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    .col{
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    .dados{
+        width: 100%;
+        align-items: center;
+        color: black;
+    }
+
+    .dados .titulo{
+        margin-top: 50px;
+        margin-bottom: 15px;
+        color: gold;
+        font-size: 48px;
+    }
+
+    .dados .email, .dados .telefone, .dados .cnpj{
+        width: auto;
+        align-self: flex-start;
+    }
+
+    .texto_apelativo{
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+
+    .dados i.bi{
+        color: black;
+        margin-right: 5px;
+        margin-left: 50px;
+    }
+
+    i.bi.bi-heart-fill{
+        color: red;
+        margin-left: 0px;
+    }
+
+    .pix{
+        align-items: center;
+    }
+
+    #qr_code{
+        width: 300px;
+        height: auto;
+        border-radius: 20px;
+        margin-top: 37px;
+    }
+
+    /* Smartphones (600px para baixo) */
+    @media only screen and (max-width: 600px) {
+
+        .nomeTela, .btn_perfil{
+            display: none;
+        }
+
+        .header_frente{
+            flex-flow: row-reverse;
+            justify-content: space-evenly;
+        }
+
+        header + nav a{
+            font-size: 14px;
+        }
+
+        .linha{
+            flex-flow: column wrap;
+            align-items: center;
+        }
+
+        #animais .caixa{
+            margin-left: 0px;
+            width: 300px;
+        }
+
+        .modal-dialog{
+            display: flex;
+            justify-content: center;
+        }
+
+        .modal-content{
+            width: 400px;
+        }
+
+        .ajConteudo{
+            flex-flow: column nowrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dados .titulo{
+            margin-top: 40px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .pix{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .detalhes{
+            height: fit-content;
+            margin-bottom: 40px;
+        }
+
+        #informacoes ul{
+            padding-left: 0px;
+            padding-right: 10px;
+        }
+
+        #caracteristicas .caixa{
+            height: fit-content;
+            flex-flow: column wrap;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        #caracteristicas .imagem{
+            display: flex;
+            justify-content: center;
+        }
+
+        #caracteristicas .caixa img{
+            width: 90%;
+            height: auto;
+            margin: 0px;
+        }
+
+        div.informacao{
+            width: 100%;
+            display: flex;
+            flex-flow: column wrap;
+        }
+
+        #caracteristicas .invertido .informacao{
+            margin-left: 0px;
+        }
+        
+        #caracteristicas .invertido img{
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+
+        p.reduzido{
+            margin-left: 30px;
+        }
+
+        h2.reduzido{
+            margin-left: 0px;
+        }
+    }
+
+    /*Dispostivos Médios (Tablets deitados, até 768px) */
+    @media only screen and (min-width: 601px) and (max-width: 782px) {
+
+        .nomeTela{
+            display: none;
+        }
+
+        .col1 li a{
+            justify-content: center;
+        }
+
+        .col1 li{
+            padding-left: 0px;
+        }
+
+        .col1 li a i{
+            margin-right: 0px;
+        }
+
+        header + nav a{
+            font-size: 16px;
+        }
+
+        .linha{
+            width: 100%;
+            flex-flow: row wrap;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        #animais .caixa{
+            width: 275px;
+            margin-left: 5px;
+            margin-right: 0px;
+        }
+
+        .modal-dialog{
+            display: flex;
+            justify-content: center;
+        }
+
+        .modal-content{
+            width: 425px;
+        }
+
+        .ajConteudo{
+            flex-flow: column nowrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dados .titulo{
+            margin-top: 40px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .pix{
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .detalhes{
+            flex-flow: column nowrap;
+            height: fit-content;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        #informacoes ul{
+            padding-left: 0px;
+            padding-right: 10px;
+        }
+
+        .lista ol{
+            padding-left: 110px;
+            padding-right: 90px;
+        }
+
+        .detalhes .img{
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #caracteristicas .caixa{
+            width: 70%;
+            height: fit-content;
+            flex-flow: column wrap;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            position: relative;
+        }
+
+        #caracteristicas .imagem{
+            display: flex;
+            justify-content: center;
+        }
+
+        #caracteristicas .caixa img{
+            width: auto;
+            height: 210px;
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+
+        div.informacao{
+            width: 100%;
+            display: flex;
+            flex-flow: column wrap;
+        }
+
+        #caracteristicas .invertido .informacao{
+            margin-left: 0px;
+        }
+        
+        #caracteristicas .invertido img{
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+
+        p.reduzido{
+            margin-left: 30px;
+        }
+
+        h2.reduzido{
+            margin-left: 0px;
+        }
+    }
+
+    @media only screen and (min-width: 783px) and (max-width: 920px) {
+        #animais .caixa{
+            width: 250px;
+            margin-left: 5px;
+            margin-right: 0px;
+        }
+
+        .linha{
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .ajConteudo{
+            margin-bottom: 20px;
+        }
+
+        .dados .titulo{
+            margin-top: 40px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .pix{
+            justify-content: center;
+        }
+
+        .detalhes{
+            flex-flow: column nowrap;
+            height: fit-content;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        #informacoes ul > li{
+            margin-left: 15px;
+        }
+
+        .lista ol{
+            padding-left: 20px;
+            padding-right: 50px;
+        }
+
+        .detalhes .img{
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page{
+            flex-flow: row wrap;
+            justify-content: space-evenly;
+        }
+
+        #caracteristicas .caixa{
+            width: 40%;
+            height: fit-content;
+            flex-flow: column wrap;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        #caracteristicas .imagem{
+            display: flex;
+            justify-content: center;
+        }
+
+        #caracteristicas .caixa img{
+            width: 90%;
+            height: auto;
+            margin: 0px;
+        }
+
+        div.informacao{
+            width: 100%;
+            display: flex;
+            flex-flow: column wrap;
+        }
+
+        #caracteristicas .invertido .informacao{
+            margin-left: 0px;
+        }
+        
+        #caracteristicas .invertido img{
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+
+        p.reduzido{
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        h2.reduzido{
+            margin-left: 0px;
+        }
+    }
+
+    /* Dispostivos Largos (laptops/desktops, 992px para cima) */
+    @media only screen and (min-width: 770px) and (max-width: 1022px) {
+        .col1 li{
+            padding-left: 0px;
+        }
+
+        .col1 li a{
+            flex-flow: column wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .col1 li a i{
+            margin-right: 0px;
+        }
+        
+        .linha{
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .ajConteudo{
+            margin-bottom: 20px;
+        }
+
+        .dados .titulo{
+            margin-top: 40px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .pix{
+            justify-content: center;
+        }
+
+        .detalhes{
+            flex-flow: column nowrap;
+            height: fit-content;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        #informacoes ul > li{
+            margin-left: 50px;
+        }
+
+        .lista ol{
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+        .detalhes .img{
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    @media only screen and (min-width: 921px) {
+        #caracteristicas .invertido{
+            display: flex;
+            flex-flow: row-reverse nowrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #caracteristicas .caixa{
+            height: 270px;
+        }
+    }
+
+    /*
+    #caracteristicas .invertido{
+            display: flex;
+            flex-flow: row-reverse nowrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+    */
+
+    /* Super Largos (Telas maiores laptops, desktops e até TVs, 1200px para cima) */
+    @media only screen and (min-width: 1023px) {
+        .linha{
+            justify-content: space-evenly;
+        }
+
+        .ajConteudo{
+            margin-bottom: 20px;
+        }
+
+        .dados .titulo{
+            margin-top: 40px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .pix{
+            justify-content: center;
+        }
+
+        .dados .titulo{
+            margin-top: 40px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .detalhes{
+            flex-flow: row wrap;
+            margin-bottom: 40px;
+        }
+
+        #informacoes div.lista{
+            width: 50%;
+        }
+
+        .lista ol, .lista li{
+            margin-left: 0px;
+        }
+
+        #informacoes .img{
+            width: 50%;
+            margin-left: 0px;
+        }
+    }
+</style>
