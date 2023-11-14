@@ -52,7 +52,65 @@
                             </div>
                         </div>
                         <div class="apagar_conta">
+                            <button class="editar_conta btn btn-warning" data-bs-toggle="modal" data-bs-target=".dado">Editar conta</button>
                             <button type="submit" class="excluir_conta btn btn-danger">Apagar conta</button>
+                        </div>
+
+                        <div class="modal dado" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="card">
+                                        <img src="#" alt="Foto de perfil">
+                                        <button id="alterar_foto" class="btn btn-dark">Alterar foto</button>
+                                        <div class="card-body">
+                                            <div class="card-text descricao d-flex align-content-left">
+                                                <form class="formulario">
+                                                    <div class="row">
+                                                        <div class="col dados1">
+                                                            <div class="form-floating">
+                                                                <input type="text" class="form-control" id="nome" placeholder="Nome" required>
+                                                                <label for="nome">Nome:</label>
+                                                            </div>
+                                                            <div class="form-floating">
+                                                                <input type="email" class="form-control" id="email" placeholder="email@example.com" required>
+                                                                <label for="email">Email:</label>
+                                                            </div>
+                                                            <div class="form-floating">
+                                                                <input type="password" class="form-control" id="senha" placeholder="Senha" minlength="6" required>
+                                                                <label for="senha">Senha:</label>
+                                                            </div>
+                                                            <div class="form-floating">
+                                                                <input type="tel" class="form-control" id="telefone" placeholder="Nº de telefone" minlength="11" maxlength="11" required>
+                                                                <label for="telefone">Telefone:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col dados2">
+                                                            <div class="textoData">
+                                                                <h6><strong>Data de nascimento:</strong></h6>
+                                                                <input type="date" name="data" id="data" required>
+                                                            </div>
+                                    
+                                                            <div class="papelUsuario">
+                                                                <h6><strong>Eu desejo:</strong></h6>
+                                                                <select class="form-select" aria-label="Desejo">
+                                                                    <option value="1">Colocar pra adoção</option>
+                                                                    <option value="2">Adotar</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <footer class="row">
+                                                        <button type="submit" class="confirmar btn btn-primary">Confirmar</button>
+                                                    </footer>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
