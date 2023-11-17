@@ -148,7 +148,7 @@
         background-color: #ff0019;
     }
 
-    #formulario1, #formulario4{
+    #formulario1{
         display: flex;
         flex-flow: column;
     }
@@ -177,6 +177,41 @@
 
     .confirmar{
         width: fit-content;
+    }
+
+    .card{
+        height: fit-content;
+    }
+
+    .card img{
+        width: 100%;
+        height: fit-content;
+        margin-bottom: 20px;
+    }
+
+    .card-body{
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    .descricao{
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    div.form-floating{
+        margin-bottom: 25px;
+    }
+
+    .form-floating{
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        font-weight: bold;
+    }
+
+    .form-floating p{
+        margin: 0px;
     }
 
     /* Smartphones (600px para baixo) */

@@ -54,15 +54,19 @@
                                                     <button type="submit" class="adotar btn btn-primary">Quero adotar</button>
                                                     <button type="submit" class="cancelar btn btn-danger">Cancelar</button>
                                                 </div>
-                                                <form id="formulario2">
+                                                <form id="formulario" class="formulario2">
                                                     <div>
-                                                        <label for="inputText2" class="form-label"></label>
-                                                        <textarea class="form-control" id="inputText2" placeholder="Comente algo..."></textarea>
+                                                        <label for="inputText" class="form-label"></label>
+                                                        <textarea @keydown="contagemTexto()" class="form-control" id="inputText" placeholder="Comente algo..."></textarea>
+                                                    </div>
+                                                    <div class="row mt-3 mb-3">
+                                                        <strong><span class="contadorModal d-flex justify-content-center"></span></strong>
                                                     </div>
                                                     <div class="btn-comentar d-flex justify-content-center py-2">
-                                                        <button type="submit" class="Comentar btn btn-primary">Comentar</button>
+                                                        <button @click="comentar()" type="submit" id="Comentar" class="Comentar btn btn-primary">Comentar</button>
                                                     </div>
                                                 </form>
+                                                <div id="commentPost"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -126,15 +130,19 @@
                                                     <button type="submit" class="adotar btn btn-primary">Quero adotar</button>
                                                     <button type="submit" class="cancelar btn btn-danger">Excluir</button>
                                                 </div>
-                                                <form id="formulario3">
+                                                <form id="formulario" class="formulario3">
                                                     <div>
                                                         <label for="inputText" class="form-label"></label>
-                                                        <textarea class="form-control" id="inputText" placeholder="Comente algo..."></textarea>
+                                                        <textarea @keydown="contagemTexto()" class="form-control" id="inputText" placeholder="Comente algo..."></textarea>
+                                                    </div>
+                                                    <div class="row mt-3 mb-3">
+                                                        <strong><span class="contadorModal d-flex justify-content-center"></span></strong>
                                                     </div>
                                                     <div class="btn-comentar d-flex justify-content-center py-2">
-                                                        <button type="submit" class="Comentar btn btn-primary">Comentar</button>
+                                                        <button @click="comentar()" type="submit" id="Comentar" class="Comentar btn btn-primary">Comentar</button>
                                                     </div>
                                                 </form>
+                                                <div id="commentPost"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -154,9 +162,11 @@
                                             <!-- <img src="#" alt="Foto do animal"> -->
                                             <div class="card-body">
                                                 <div class="card-text descricao d-flex align-content-left">
-                                                    <form id="formulario4">
+                                                    <form id="formulario" class="formulario4">
                                                         <img src="#" alt="Foto do animal">
-                                                        <button type="button" id="alterar_foto" class="btn btn-dark">Selecionar foto</button>
+                                                        <div class="selecionar_foto">
+                                                            <button type="button" id="alterar_foto" class="btn btn-dark">Selecionar foto</button>
+                                                        </div>
                                                         <div class="form-floating">
                                                             <select class="tipo_animal" name="tipo de animal" required>
                                                                 <option selected disabled value="">Tipo de animal:</option>
@@ -261,10 +271,89 @@
             mostrarSecao(secao) {
                 // Ocultando todas as seções
                 this.secaoAtiva = secao;
+            },
+            contagemTexto(){
+                const limite = 100;
+
+                function text(textarea, textoContagem, btn) {
+                    let tamanho = textarea.value.length;
+                    let cont = limite - tamanho;
+                    let frasePronta;
+                    
+                    textoContagem.innerHTML = cont;
+
+                    const palavra = textarea.value;
+
+                    if(cont < 50 && cont >= 21){
+                        textoContagem.style.color = "yellow";
+                        btn.disabled = false;
+                        frasePronta = " letras restantes";
+                    }else if(cont <= 20 && cont >= 0){
+                        textoContagem.style.color = "orange";
+                        btn.disabled = false;
+                        frasePronta = " letras restantes";
+                    }else if(cont < 0){
+                        textoContagem.style.color = "red";
+                        btn.disabled = true;
+                        frasePronta = "! Limite superado";
+                    }else if(palavra == ""){
+                        textoContagem.style.color = "black";
+                        btn.disabled = true;
+                        frasePronta = " letras disp.";
+                    }else{
+                        textoContagem.style.color = "purple";
+                        btn.disabled = false;
+                        frasePronta = " letras restantes";
+                    }
+
+                    textoContagem.innerHTML += frasePronta;
+                }
+
+                const qtd = document.querySelectorAll("#Comentar");
+                const textareas = document.getElementsByTagName("textarea");
+                const contadores = document.querySelectorAll(".contadorModal");
+
+                for (let i = 0; i < textareas.length; ++i) {
+                    textareas[i].addEventListener("input", function () {
+                        this.style.height = "auto";
+                        this.style.height = `${this.scrollHeight}px`;
+
+                        text(textareas[i], contadores[i], qtd[i]);
+                    });
+                }
+            },
+            comentar(){
+                const textComment = document.querySelectorAll("#inputText");
+                const form = document.querySelectorAll("#formulario");
+                const commentPost = document.querySelectorAll("#commentPost");
+
+                for (let i = 0; i < form.length; ++i) {
+                    const handleSubmit = (event) => {
+                        event.preventDefault();
+
+                        let p = document.createElement("p");
+                        p.classList = "p-2 d-flex text-wrap flex-wrap comment";
+                        p.style.overflowWrap = "anywhere";
+                        p.innerHTML = `<strong>Username: </strong> &nbsp ${textComment[i].value}`;
+                        commentPost[i].appendChild(p);
+                        textComment[i].value = "";
+
+                        form[i].removeEventListener("submit", handleSubmit);
+                    };
+
+                    form[i].addEventListener("submit", handleSubmit);
+                }
             }
         },
-        mounted(){
-            
+        mounted() {
+            window.onload = () => {
+                const qtd = document.querySelectorAll("#Comentar");
+                const textareas = document.getElementsByTagName("textarea");
+
+                for (let i = 0; i < textareas.length; ++i) {
+                    console.log(qtd.length);
+                }
+            }
         }
     })
 </script>
@@ -486,5 +575,59 @@
         background: url('https://www.freeiconspng.com/uploads/black-arrow-down-icon-png-16.png') no-repeat right center;
         background-size: 20px 20px;
         background-position-x: 120px;
+    }
+
+    .formulario4{
+        display: flex;
+        flex-flow: column;
+    }
+
+    .selecionar_foto{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    #alterar_foto{
+        width: fit-content;
+        font-weight: bold;
+    }
+
+    footer{
+        display: flex;
+        justify-content: center;
+    }
+
+    .textoData{
+        margin-bottom: 20px;
+    }
+
+    #data{
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .confirmar{
+        width: fit-content;
+    }
+
+    .card{
+        height: fit-content;
+    }
+
+    .card img{
+        width: 100%;
+        height: fit-content;
+        margin-bottom: 20px;
+    }
+
+    .card-body{
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    .descricao{
+        display: flex;
+        flex-flow: column wrap;
     }
 </style>
