@@ -29,8 +29,7 @@
                             <div class="card-body">
                                 <div class="card-text descricao d-flex align-content-left">
                                     <form id="formulario1">
-                                        <img src="#" alt="Foto de perfil">
-                                        <button type="button" id="alterar_foto" class="btn btn-dark">Alterar foto</button>
+                                        <FotoSelect />
                                         <div class="row">
                                             <div class="col dados1">
                                                 <div class="form-floating">
@@ -80,8 +79,13 @@
 </template>
 
 <script>
+    import FotoSelect from '../components/FotoSelect.vue'
+
     export default ({
-        name: "Profile"
+        name: "Profile",
+        components: {
+            FotoSelect
+        }
     })
 </script>
 
