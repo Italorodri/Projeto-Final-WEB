@@ -15,10 +15,10 @@
 <script>
 export default {
   data() {
-      return {
-        imgSelecionada: null
-      };
-    },
+    return {
+      imgSelecionada: null
+    };
+  },
   methods: {
       selectImage () {
           this.$refs.fileInput.click()
@@ -30,6 +30,7 @@ export default {
           let reader = new FileReader
           reader.onload = e => {
             this.imgSelecionada = e.target.result
+            this.$emit("imagemSelecionada", this.imgSelecionada)
           }
           reader.readAsDataURL(file[0])
           this.$emit('input', file[0])

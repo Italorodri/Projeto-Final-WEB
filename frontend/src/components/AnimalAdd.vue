@@ -13,7 +13,16 @@
                         <div class="card-body">
                             <div class="card-text descricao d-flex align-content-left">
                                 <form id="formulario" class="formulario4" @submit="finalizarFormulario">
-                                    <FotoSelect />
+                                    <!-- <FotoSelect /> -->
+                                    <div id="lugarDeImagem2" :style="{ 'background-image': `url(${imgSelecionada2})` }" @click="selectImage2">
+                                        <img src="/img/IconHumanAnimal.png" id="icon2">
+                                    </div>
+
+                                    <label for="fileInput2" class="inputPersonalizado2">
+                                        Alterar foto
+                                    </label>
+                                    <input id="fileInput2" ref="fileInput" type="file" @input="pickFile2" accept="image/jpeg, image/png">
+                                    
                                     <div class="form-floating">
                                         <select class="tipo_animal" name="tipo de animal" required>
                                             <option selected disabled value="">Tipo de animal:</option>
@@ -103,6 +112,11 @@
         components: {
             FotoSelect
         },
+        data() {
+            return {
+                imgSelecionada2: null
+            };
+        },
         methods: {
             finalizarFormulario(e) {
                 const opcoesSexo = document.querySelectorAll('input[name="sexo"]:checked');
@@ -116,13 +130,92 @@
                     return;
                 }
 
+                if (!this.imgSelecionada2) {
+                    e.preventDefault();
+
+                    alert("Por favor, selecione uma foto");
+                    return;
+                }
+
                 // Resto do código do envio do formulário
+            },
+            selectImage2 () {
+                this.$refs.fileInput.click()
+            },
+            pickFile2 () {
+                let input = this.$refs.fileInput
+                let file = input.files
+                if (file && file[0]) {
+                    let reader = new FileReader
+                    reader.onload = e => {
+                        this.imgSelecionada2 = e.target.result
+                        //this.$emit("imagemSelecionada", this.imgSelecionada)
+                    }
+                    reader.readAsDataURL(file[0])
+                    //this.$emit('input', file[0])
+                }
+
+                this.sumir();
+            },
+            sumir(){
+                let icon = document.getElementById("icon2");
+                icon.style.display = "none";
+
+                let lugarDeImagem2 = document.getElementById("lugarDeImagem2");
+                lugarDeImagem2.style.height = "300px";
+                lugarDeImagem2.style.width = "100%";
             }
         }
     })
 </script>
 
 <style scoped>
+    #fotoSelect2{
+        display: flex;
+        flex-flow: column;
+    }
+
+    #lugarDeImagem2 {
+        width: 200px;
+        height: 200px;
+        display: block;
+        cursor: pointer;
+        margin: 0 auto 30px;
+        background-size: cover;
+        background-position: center center;
+        border-radius: 5px;
+    }
+
+    .inputPersonalizado2 {
+        width: fit-content;
+        display: flex;
+        align-self: center;
+        margin-bottom: 40px;
+        font-weight: bold;
+        background: #212529;
+        padding: 10px 15px;
+        color: white;
+        cursor: pointer;
+        border-radius: 0.375rem;
+    }
+
+    .inputPersonalizado2:hover {
+        background: #424649;
+    }
+
+    #icon2{
+        width: 200px;
+        height: 200px;
+        border-radius: 130px;
+    }
+
+    #fileInput2{
+        display: none;
+    }
+
+
+
+
     .add_animal{
         background-color: white;
         border-radius: 20px;

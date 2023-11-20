@@ -1,7 +1,8 @@
 <template>
     <div class="profile">
         <div class="foto">
-            <img src="#" alt="Foto de perfil">
+            <img v-if="imgSelecionada" :src="imgSelecionada" alt="Foto de perfil">
+            <img v-else src="/img/IconHumanAnimal.png" alt="Foto de perfil">
         </div>
         <div class="dados_apagar">
             <div class="dados_pessoais">
@@ -19,7 +20,7 @@
                 <button type="submit" class="excluir_conta btn btn-danger">Apagar conta</button>
             </div>
 
-            <div class="modal dado" tabindex="-1">
+            <div class="modal dado" id="profileModal" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -28,8 +29,17 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-text descricao d-flex align-content-left">
-                                    <form id="formulario1">
-                                        <FotoSelect />
+                                    <form id="formulario1" @submit="handleSubmit">
+                                        <!-- <FotoSelect @imagemSelecionada="handleImagemSelecionada" /> -->
+                                        <div class="lugarDeImagem" :style="{ 'background-image': `url(${imgSelecionada})` }" @click="selectImage">
+                                            <img src="/img/IconHumanAnimal.png" id="icon">
+                                        </div>
+
+                                        <label for="fileInput" class="inputPersonalizado">
+                                            Alterar foto
+                                        </label>
+                                        <input id="fileInput" ref="fileInput" type="file" @input="pickFile" accept="image/jpeg, image/png">
+                                        
                                         <div class="row">
                                             <div class="col dados1">
                                                 <div class="form-floating">
@@ -83,13 +93,101 @@
 
     export default ({
         name: "Profile",
+        data() {
+            return {
+                imgSelecionada: null
+            };
+        },
         components: {
             FotoSelect
+        },
+        methods:{
+            handleImagemSelecionada(imagem) {
+                this.imgSelecionada = imagem;
+            },
+            handleSubmit(e) {
+                if (!this.imgSelecionada) {
+                    e.preventDefault();
+
+                    alert("Por favor, selecione uma foto");
+                    return;
+                }
+            },
+            selectImage () {
+                this.$refs.fileInput.click()
+            },
+            pickFile () {
+                let input = this.$refs.fileInput
+                let file = input.files
+                if (file && file[0]) {
+                    let reader = new FileReader
+                    reader.onload = e => {
+                        this.imgSelecionada = e.target.result
+                        //this.$emit("imagemSelecionada", this.imgSelecionada)
+                    }
+                    reader.readAsDataURL(file[0])
+                    //this.$emit('input', file[0])
+                }
+
+                this.sumir();
+            },
+            sumir(){
+                let icon = document.getElementById("icon");
+                icon.style.display = "none";
+            }
         }
     })
 </script>
 
 <style scoped>
+    #fotoSelect{
+        display: flex;
+        flex-flow: column;
+    }
+
+    .lugarDeImagem {
+        width: 200px;
+        height: 200px;
+        display: flex;
+        cursor: pointer;
+        justify-content: center;
+        /*margin: 0 60px 30px;*/
+        background-size: cover;
+        background-position: center center;
+        border-radius: 130px;
+    }
+
+    .inputPersonalizado {
+        width: fit-content;
+        display: flex;
+        align-self: center;
+        margin-bottom: 40px;
+        font-weight: bold;
+        background: #212529;
+        padding: 10px 15px;
+        color: white;
+        cursor: pointer;
+        border-radius: 0.375rem;
+    }
+
+    .inputPersonalizado:hover {
+        background: #424649;
+    }
+
+    #icon{
+        width: 200px;
+        height: 200px;
+        border-radius: 130px;
+        margin: 0px;
+    }
+
+    #fileInput{
+        display: none;
+    }
+
+
+
+
     section{
         /*background-color: gray;*/
         background-color: rgb(0, 63, 145);
@@ -111,9 +209,9 @@
         margin-bottom: 10px;
         margin-left: 70px;
         margin-right: 70px;
-        border-radius: 30px;
-        width: 75px;
-        height: auto;
+        border-radius: 130px;
+        width: 120px;
+        height: 120px;
     }
 
     .profile p{
