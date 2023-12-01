@@ -2,7 +2,7 @@
     <div class="cadastro_page">
         <ImagensBG />
         <div class="cadastro">
-            <form class="formulario">
+            <form class="formulario" @submit="verificarForm($event)">
                 <header class="row">
                     <div class="col"></div>
                     <div class="col titulo">
@@ -29,11 +29,11 @@
                             <label for="senha">Senha:</label>
                             </div>
                             <div class="form-floating">
-                            <input type="password" class="form-control" id="confirmar" placeholder="Confirmar senha" required>
+                            <input type="password" class="form-control" id="confirmar" placeholder="Confirmar senha" minlength="6" required>
                             <label for="confirmar">Confirmação de senha:</label>
                             </div>
                             <div class="form-floating">
-                                <input type="tel" class="form-control" id="telefone" placeholder="Nº de telefone" minlength="11" maxlength="11" required>
+                                <input type="tel" pattern="[0-9]{11}" class="form-control" id="telefone" placeholder="Nº de telefone" minlength="11" maxlength="11" required>
                                 <label for="telefone">Telefone:</label>
                             </div>
                         </div>
@@ -56,19 +56,20 @@
                             </div>
         
                             <div class="form-check my-2 radio">
-                                <input class="form-check-input sim" type="radio" name="inlineRadioOptions" id="Sim" value="sim" unchecked>
-                                <label class="form-check-label" for="inlineRadio1">Sim</label>
+                                <input class="form-check-input sim" type="radio" name="radioOptions" id="Sim" value="sim" @click="liberarBtn" unchecked>
+                                <label class="form-check-label" for="Sim">Sim</label>
                             </div>
                             <div class="form-check radio">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Nao" value="nao">
-                                <label class="form-check-label" for="inlineRadio2">Não</label>
+                                <input class="form-check-input" type="radio" name="radioOptions" id="Nao" value="nao" @click="bloquearBtn">
+                                <label class="form-check-label" for="Nao">Não</label>
                             </div>
                         </div>
                     </div>
                 </section>
                 <footer class="row">
                     <div class="footer">
-                        <router-link to="/home"><button type="submit" class="inscrever btn btn-primary">Confirmar</button></router-link>
+                        <!-- <router-link to="/home"><button type="submit" class="inscrever btn btn-primary" @click="verificarForm">Confirmar</button></router-link> -->
+                        <button type="submit" id="inscrever" class="btn btn-primary" disabled>Confirmar</button>
                     </div>
                 </footer>
             </form>
@@ -90,6 +91,71 @@
           ImagensBG
         },
         methods:{
+            verificarForm(e){
+                this.verifConfSenha(e);
+                this.verificarTele(e);
+                this.verificarData(e);
+            },
+            verifConfSenha(e){
+                let senha = document.getElementById("senha");
+                let confSenha = document.getElementById("confirmar");
+
+                if(!(senha.value === confSenha.value)){
+                    e.preventDefault();
+
+                    alert("Senha e Confirmar senha devem ser iguais");
+                    return;
+                }
+            },
+            verificarTele(e){
+                let telefone = document.getElementById("telefone").value.trim();
+
+                if(!(telefone[0] == "8") || !(telefone[2] == "9") || (!(telefone[3] == "9" && telefone[4] == "9") && !(telefone[3] == "8" && telefone[4] == "8")) ){
+                    e.preventDefault();
+
+                    alert("Número de telefone inválido");
+                    return;
+                }
+            },
+            verificarData(e){
+                let dataPreenchida = document.getElementById("data").value.trim();
+
+                if(dataPreenchida == ""){
+                    e.preventDefault();
+
+                    alert("Informe a sua data de nascimento");
+                    return;
+                }else{    
+                    let dataHoje = new Date();
+
+                    let dataMin = dataHoje.getFullYear()-18+"-"+(dataHoje.getMonth()+1)+"-"+dataHoje.getDate();
+
+                    if(dataPreenchida > dataMin){
+                        e.preventDefault();
+
+                        alert("É preciso ter no mínimo 18 anos para poder adotar um animal, ou colocar um para adoção");
+                        return;
+                    }
+                }
+            },
+            liberarBtn(){
+                const opcoesTermo = document.querySelectorAll('input[name="radioOptions"]:checked');
+                const opcoesTermoNao = document.querySelectorAll('input[id="Nao"]:checked');
+
+                if(opcoesTermo.length === 1 && opcoesTermoNao.length === 0){
+                    let botao = document.getElementById("inscrever");
+                    botao.disabled = false;
+                }
+            },
+            bloquearBtn(){
+                const opcoesTermo = document.querySelectorAll('input[name="radioOptions"]:checked');
+                const opcoesTermoNao = document.querySelectorAll('input[id="Nao"]:checked');
+
+                if(opcoesTermo.length === 1 && opcoesTermoNao.length === 1){
+                    let botao = document.getElementById("inscrever");
+                    botao.disabled = true;
+                }
+            }
             
         },
         mounted(){
@@ -216,14 +282,14 @@
         position: relative;
     }
 
-    .inscrever{
+    #inscrever{
         margin-bottom: 20px;
         font-size: 20px;
         font-weight: bold;
         display: flex;
     }
 
-    .inscrever:hover{
+    #inscrever:hover{
         background-color: rgb(0, 0, 100);
         border-color: rgb(0, 0, 100);
     }
