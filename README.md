@@ -33,7 +33,9 @@ Usuário registrado poderá adotar algum animal da lista, como também pode colo
 **Frontend:**
 
 VueJS, Vue-Router, Pinia
+
 Axios
+
 Vuetify
 
 **Backend:**
