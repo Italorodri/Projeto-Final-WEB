@@ -1,21 +1,25 @@
-# :checkered_flag: NOME DO PROJETO
+# :checkered_flag: Adota Aí
 
 O projeto tem o intuito de ser ambiente de Adoção de animais, onde um usuário pode realizar doações e como também adotar.
 
 ## :technologist: Membros da equipe
 
 Gabriel Cavalcantes alves - 495439
+
 Ítalo Rodrigues Nascimento - 494845
 
 ## :people_holding_hands: Papéis ou tipos de usuário da aplicação
 
 Usuário registrado
+
 Usuário não registrado
 
 ## :spiral_calendar: Entidades ou tabelas do sistema
 
 Usuário
+
 Adoção
+
 Comentário
 
 ## :triangular_flag_on_post: Principais funcionalidades da aplicação
@@ -40,11 +44,10 @@ Strapi
 
 | Entidade   | Criação | Leitura | Atualização | Remoção |
 | ---------- | ------- | ------- | ----------- | ------- |
-| Entidade 1 | X       | X       |             | X       |
-| Entidade 2 | X       |         | X           | X       |
-| Entidade 3 | X       |         |             |         |
+| Usuaio |        |        |             |       |
+| Adocao  | X       | X        | X           | X       |
+| Cometario  | X       |  X       |             |         |
 
-> Lembre-se que é necessário implementar o CRUD de pelo menos duas entidades.
 
 ## :neckbeard: Rotas da API REST utilizadas
 
