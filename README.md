@@ -46,9 +46,9 @@ Strapi
 
 | Entidade   | Criação | Leitura | Atualização | Remoção |
 | ---------- | ------- | ------- | ----------- | ------- |
-| Usuaio |        |        |             |       |
-| Adocao  | X       | X        | X           | X       |
-| Cometario  | X       |  X       |             |         |
+| Usuario |  X      |        |             |       |
+| Adoçaao  | X       | X        | X           | X       |
+| Comentário  | X       |  X       |             |         |
 
 
 ## :neckbeard: Rotas da API REST utilizadas
