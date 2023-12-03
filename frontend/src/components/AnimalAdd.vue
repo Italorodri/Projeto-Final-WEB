@@ -12,7 +12,7 @@
                         <!-- <img src="#" alt="Foto do animal"> -->
                         <div class="card-body">
                             <div class="card-text descricao d-flex align-content-left">
-                                <form id="formulario" class="formulario4" @submit="finalizarFormulario">
+                                <form id="formulario" class="formulario4" @submit="handleSubmit">
                                     <!-- <FotoSelect /> -->
                                     <div id="lugarDeImagem2" :style="{ 'background-image': `url(${imgSelecionada2})` }" @click="selectImage2">
                                         <img src="/img/IconHumanAnimal.png" id="icon2">
@@ -23,8 +23,14 @@
                                     </label>
                                     <input id="fileInput2" ref="fileInput" type="file" @input="pickFile2" accept="image/jpeg, image/png">
                                     
+                                    <div class="name">
+                                        <div class="form-floating">
+                                            <input v-model="name" type="text" class="form-control" id="nome" placeholder="Nome" required>
+                                            <label for="nome">Nome:</label>
+                                        </div>
+                                    </div>
                                     <div class="form-floating">
-                                        <select class="tipo_animal" name="tipo de animal" required>
+                                        <select v-model="type" class="tipo_animal" name="tipo de animal" required>
                                             <option selected disabled value="">Tipo de animal:</option>
                                             <option value="Cachorro">Cachorro</option>
                                             <option value="Cavalo">Cavalo</option>
@@ -43,21 +49,21 @@
                                     <div class="form-floating">
                                         <p>Sexo:</p>
                                         <div class="form-check radio">
-                                            <input class="form-check-input sim" type="radio" name="sexo" id="femea" value="femea">
+                                            <input v-model="sexo1" class="form-check-input sim" type="radio" name="sexo" id="femea" value="femea">
                                             <label class="form-check-label" for="femea">Fêmea</label>
                                         </div>
                                         <div class="form-check radio">
-                                            <input class="form-check-input" type="radio" name="sexo" id="macho" value="macho">
+                                            <input v-model="sexo2" class="form-check-input" type="radio" name="sexo" id="macho" value="macho">
                                             <label class="form-check-label" for="macho">Macho</label>
                                         </div>
                                     </div>
                                     <div class="linha">
                                         <div class="form-floating" id="idadeff">
-                                            <input type="number" class="form-control" id="idade" placeholder="Idade:" minlength="1" maxlength="2" required>
+                                            <input v-model="idades" type="number" class="form-control" id="idade" placeholder="Idade:" minlength="1" maxlength="2" required>
                                             <label for="idade">Idade:</label>
                                         </div>
                                         <div class="form-floating">
-                                            <select class="tempo_de_vida" name="tempo de vida" required>
+                                            <select v-model="tempo" class="tempo_de_vida" name="tempo de vida" required>
                                                 <option selected disabled value="">Tempo de vida</option>
                                                 <option value="Meses">Mês/Meses</option>
                                                 <option value="Anos">Ano(s)</option>
@@ -67,28 +73,28 @@
                                     <div class="form-floating">
                                         <p>Vacinado(a):</p>
                                         <div class="form-check radio">
-                                            <input class="form-check-input sim" type="radio" name="vacinado" id="Sim_vac" value="sim">
+                                            <input v-model="vacinado1" class="form-check-input sim" type="radio" name="vacinado" id="Sim_vac" value="sim">
                                             <label class="form-check-label" for="Sim_vac">Sim</label>
                                         </div>
                                         <div class="form-check radio">
-                                            <input class="form-check-input" type="radio" name="vacinado" id="Nao_vac" value="nao">
+                                            <input v-model="vacinado2" class="form-check-input" type="radio" name="vacinado" id="Nao_vac" value="nao">
                                             <label class="form-check-label" for="Nao_vac">Não</label>
                                         </div>
                                     </div>
                                     <div class="form-floating">
                                         <p>Castrado(a):</p>
                                         <div class="form-check radio">
-                                            <input class="form-check-input sim" type="radio" name="castrado" id="Sim_cas" value="sim">
+                                            <input v-model="castrado1" class="form-check-input sim" type="radio" name="castrado" id="Sim_cas" value="sim">
                                             <label class="form-check-label" for="Sim_cas">Sim</label>
                                         </div>
                                         <div class="form-check radio">
-                                            <input class="form-check-input" type="radio" name="castrado" id="Nao_cas" value="nao">
+                                            <input v-model="castrado2" class="form-check-input" type="radio" name="castrado" id="Nao_cas" value="nao">
                                             <label class="form-check-label" for="Nao_cas">Não</label>
                                         </div>
                                     </div>
                                     <div>
                                         <label for="detalhes_add" class="form-label">Detalhes adicionais: (Opcional)</label>
-                                        <textarea class="form-control" id="detalhes_add"></textarea>
+                                        <textarea v-model="details" class="form-control" id="detalhes_add"></textarea>
                                     </div>
                                     <div class="botoes">
                                         <button type="submit" class="colocar btn btn-primary">Postar</button>
@@ -106,9 +112,103 @@
 
 <script>
     import FotoSelect from '../components/FotoSelect.vue'
+    import { useAnimalStore } from '../stores/AnimalStore';
+    import { ref } from 'vue'
 
     export default ({
         name: "AnimalAdd",
+        setup(){
+            const animalStore = useAnimalStore;
+
+            const finalizarFormulario = (e) => {
+                console.log("Entrou em finalizarFormulario()");
+
+                const opcoesSexo = document.querySelectorAll('input[name="sexo"]:checked');
+                const opcoesVacinado = document.querySelectorAll('input[name="vacinado"]:checked');
+                const opcoesCastrado = document.querySelectorAll('input[name="castrado"]:checked');
+
+                if (opcoesSexo.length === 0 || opcoesVacinado.length === 0 || opcoesCastrado.length === 0) {
+                    e.preventDefault();
+
+                    alert('Não se esqueça de preencher todos os atributos do animal.');
+                    return false;
+                }
+
+                if (!this.imgSelecionada2) {
+                    e.preventDefault();
+
+                    alert("Por favor, selecione uma foto");
+                    return false;
+                }
+            }
+
+            const name = ref('');
+            const type = ref('');
+            const sexo1 = ref('');
+            const sexo2 = ref('');
+            const idades = ref('');
+            const tempo = ref('');
+            const vacinado1 = ref('');
+            const vacinado2 = ref('');
+            const castrado1 = ref('');
+            const castrado2 = ref('');
+            const details = ref('');
+
+            const handleSubmit = (e) => {
+                if(finalizarFormulario(e)){
+                    let sex;
+                    if(sexo1.value.length > 0){
+                        sex = sexo1;
+                    }else{
+                        sex = sexo2;
+                    }
+
+                    let age = idades.value+" "+tempo.value;
+
+                    let vacinated;
+                    if(vacinado1.value.length > 0){
+                        vacinated = vacinado1;
+                    }else{
+                        vacinated = vacinado2;
+                    }
+
+                    let castra;
+                    if(castrado1.value.length > 0){
+                        castra = castrado1;
+                    }else{
+                        castra = castrado2;
+                    }
+                    
+                    animalStore.addAnimal({
+                        id: Math.floor(Math.random()*10000),
+                        nome: name,
+                        //imagem: imgSelecionada2,
+                        tipo: type.value,
+                        sexo: sex.value,
+                        idade: age,
+                        vacinado: vacinated.value,
+                        castrado: castra.value,
+                        detalhes: details.value,
+                        salvo: false,
+                        criado: true
+                    })
+
+                    name.value = '';
+                    type.value = '';
+                    sexo1.value = '';
+                    sexo2.value = '';
+                    idades.value = '';
+                    tempo.value = '';
+                    vacinado1.value = '';
+                    vacinado2.value = '';
+                    castrado1.value = '';
+                    castrado2.value = '';
+                    details.value = '';
+                }
+            }
+
+            return { handleSubmit, type, sexo1,sexo2,idades,tempo,vacinado1,vacinado2,castrado1,castrado2,details }
+        },
         components: {
             FotoSelect
         },
@@ -118,27 +218,6 @@
             };
         },
         methods: {
-            finalizarFormulario(e) {
-                const opcoesSexo = document.querySelectorAll('input[name="sexo"]:checked');
-                const opcoesVacinado = document.querySelectorAll('input[name="vacinado"]:checked');
-                const opcoesCastrado = document.querySelectorAll('input[name="castrado"]:checked');
-
-                if (opcoesSexo.length === 0 || opcoesVacinado.length === 0 || opcoesCastrado.length === 0) {
-                    e.preventDefault();
-
-                    alert('Não se esqueça de preencher todos os atributos do animal.');
-                    return;
-                }
-
-                if (!this.imgSelecionada2) {
-                    e.preventDefault();
-
-                    alert("Por favor, selecione uma foto");
-                    return;
-                }
-
-                // Resto do código do envio do formulário
-            },
             selectImage2 () {
                 this.$refs.fileInput.click()
             },
@@ -285,6 +364,17 @@
         background-color: black;
         color: white;
     }
+
+    .name{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /*#nome{
+        width: 50%;
+    }*/
 
     #idade{
         width: 100px;

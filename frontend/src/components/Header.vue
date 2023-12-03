@@ -8,10 +8,15 @@
             <img src="https://images.pexels.com/photos/3581058/pexels-photo-3581058.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="cachorro para adocao">
         </div>
         <div class="header_frente">
-            <router-link to="/login" class="logout">Log Out</router-link>
+            <div class="logout" @click="logout">Log Out</div>
             <router-link to="/"><img src="/img/logo.png" alt="Logo do Adote Aí"></router-link>
             <div v-show="mostrar_btn" class="btn_perfil2" v-if="mostrar_btn"></div>
-            <router-link to="/perfil" class="btn_perfil" v-else><button class="perfil btn btn-secondary"><i class="bi bi-person"></i>  Username</button></router-link>
+            <div class="btn_perfil" v-else>
+                <button class="perfil btn btn-secondary" @click="redirectToProfile">
+                    <img :src="userPhoto" alt="Foto de Perfil" id="perfil-foto">
+                    {{ userName }}
+                </button>
+            </div>
         </div>
     </header>
 </template>
@@ -20,7 +25,53 @@
     export default ({
         name: "Header",
         props: {
-            mostrar_btn: Boolean
+            mostrar_btn: Boolean,
+        },
+        data() {
+            return {
+            userName: "Username", // Nome do usuário padrão ou obtido do backend
+            userPhoto: "/img/default-profile-pic.jpg", // URL da foto de perfil padrão ou obtida do backend
+            };
+        },
+        methods: {
+            redirectToProfile() {
+            // Implemente a navegação para a página de perfil
+            this.$router.push("/perfil");
+            },
+            // Outros métodos, como obter detalhes do usuário do backend, se necessário
+            async obterDetalhesUsuario() {
+                const token = localStorage.getItem('token');
+
+                if (token) {
+                    try {
+                        const response = await axios.get('http://localhost:1337/users/me', {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                        });
+
+                        // Atualize as propriedades userName e userPhoto com os dados do usuário
+                        this.userName = response.data.username;
+                        this.userPhoto = response.data.photo.url;
+                    } catch (error) {
+                        console.error('Erro ao obter detalhes do usuário:', error);
+                        // Lide com o erro de obtenção de detalhes do usuário de acordo com suas necessidades
+                    }
+                }
+            },
+            logout() {
+                // Limpar as informações do usuário ao fazer logout
+                localStorage.removeItem('token');
+                this.userName = "Username";
+                this.userPhoto = "/img/default-profile-pic.jpg";
+
+                // Redirecionar para a página de login ou para a página inicial
+                this.$router.push("/login");
+            }
+        },
+        mounted() {
+            // Chame a função para obter detalhes do usuário quando o componente é montado
+            this.obterDetalhesUsuario();
         }
     })
 </script>
@@ -70,6 +121,11 @@
         height: 90px;
         border-radius: 90px;
         position: 0;
+    }
+
+    #perfil-foto{
+        width: 30px;
+        height: 30px;
     }
 
     .perfil{

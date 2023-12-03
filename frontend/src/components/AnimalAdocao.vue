@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="caixa" data-bs-toggle="modal" data-bs-target=".animal1">
+    <div class="linha">
+        <!-- <div class="caixa" data-bs-toggle="modal" data-bs-target=".animal1">
             <img src="#" alt="Nenhuma imagem ainda">
             <h2 class="reduzido">Suzy</h2>
             <p class="reduzido"><strong>Tipo de animal:</strong> </p>
@@ -8,7 +8,7 @@
             <p class="reduzido"><strong>Sexo:</strong> </p>
         </div>
 
-        <!--
+        /*
             Da HOME
             <div class="caixa" data-bs-toggle="modal" data-bs-target=".animal1">
                 <img src="https://images.pexels.com/photos/15347387/pexels-photo-15347387/free-photo-of-animal-bicho-fotografia-animal-fotografia-de-animais.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1260&amp;h=750&amp;dpr=1" alt="grátis Foto profissional grátis de animal, cachorro, cachorros Foto profissional">
@@ -17,7 +17,7 @@
                 <p class="reduzido"><strong>Idade:</strong> 4 anos</p>
                 <p class="reduzido"><strong>Sexo:</strong> Fêmea</p>
             </div>
-        -->
+        */
 
         <div class="modal animal1" tabindex="-1">
             <div class="modal-dialog">
@@ -58,14 +58,86 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+
+        <div v-for="animal in animalStore.saves" :key="animal.id" class="caixa" data-bs-toggle="modal" :data-bs-target="'#animalModal-' + animal.id">
+            <AnimalDetails :animal="animal" />
+        </div>
+
+        <div v-for="animal in animalStore.animals" :key="animal.id">
+            <div class="modal" :id="'animalModal-' + animal.id" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="card">
+                            <img :src="animal.imagem">
+                            <div class="card-body">
+                                <h5 class="card-title d-flex justify-content-center">Nome: {{ animal.nome }}</h5>
+                                <div class="card-text descricao d-flex align-content-left">
+                                        <p><strong>Tipo de animal:</strong> {{ animal.tipo }}</p>
+                                        <p><strong>Sexo:</strong> {{ animal.sexo }}</p>
+                                        <p><strong>Idade:</strong> {{ animal.idade }}</p>
+                                        <p><strong>Vacinado(a):</strong> {{ animal.vacinado }}</p>
+                                        <p><strong>Castrado(a):</strong> {{ animal.castrado }}</p>
+                                        <p><strong>Detalhes adicionais:</strong> {{ animal.detalhes }}</p>
+                                </div>
+                                <div class="botoes">
+                                    <button type="submit" class="adotar btn btn-primary" @click="animalStore.salvarAnimal(animal.id), adotarAnimal(animal.id)"  :disabled="adotarDesabilitado">Quero adotar</button>
+                                    <button type="submit" class="cancelar btn btn-danger" @click="animalStore.salvarAnimal(animal.id), cancelarAdocao(animal.id)" :disabled="cancelarDesabilitado">Cancelar</button>
+                                </div>
+                                <form id="formulario" class="formulario3">
+                                    <div>
+                                        <label for="inputText" class="form-label"></label>
+                                        <textarea @keydown="contagemTexto()" class="form-control" id="inputText" placeholder="Comente algo..."></textarea>
+                                    </div>
+                                    <div class="row mt-3 mb-3">
+                                        <strong><span class="contadorModal d-flex justify-content-center"></span></strong>
+                                    </div>
+                                    <div class="btn-comentar d-flex justify-content-center py-2">
+                                        <button @click="comentar()" type="submit" id="Comentar" class="Comentar btn btn-primary" disabled>Comentar</button>
+                                    </div>
+                                </form>
+                                <div id="commentPost"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+    import { useAnimalStore } from '../stores/AnimalStore'
+    import AnimalDetails from '../components/AnimalDetails.vue'
+
     export default ({
         name: "AnimalAdocao",
+        data(){
+            return {
+                adotarDesabilitado: true,
+                cancelarDesabilitado: false
+            }
+        },
+        setup(){
+            const animalStore = useAnimalStore();
+
+            return { animalStore };
+        },
+        components:{
+            AnimalDetails
+        },
         methods:{
+            adotarAnimal(animalId) {
+                this.adotarDesabilitado = true;
+                this.cancelarDesabilitado = false;
+            },
+            cancelarAdocao(animalId) {
+                this.cancelarDesabilitado = true;
+                this.adotarDesabilitado = false;
+            },
             contagemTexto(){
                 const limite = 300;
 

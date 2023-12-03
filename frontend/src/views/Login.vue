@@ -15,7 +15,7 @@
                 </div>
             </section>
             <footer>
-                <router-link to="/home"><button type="submit" class="entrar btn btn-primary">Entrar</button></router-link>
+                <button type="submit" class="entrar btn btn-primary">Entrar</button>
             </footer>
         </form>
         <router-link to="/"><button class="voltar btn btn-danger">Voltar</button></router-link>
@@ -25,19 +25,36 @@
 
 <script>
     import ImagensBG from '../components/ImagensBG.vue'
+    import axios from 'axios';
 
     export default ({
         name: "Login",
         data(){
             return {
-                
+                email: '',
+                senha: ''
             }
         },
         components:{
           ImagensBG
         },
         methods:{
-            
+            async fazerLogin() {
+                try {
+                    const response = await axios.post('http://localhost:1337/auth/local', {
+                        identifier: this.email,
+                        password: this.senha,
+                    });
+
+                    // Se a solicitação for bem-sucedida, o token de acesso vai tá em response.data.jwt
+                    // Dá pra guardar o token em localStorage para futuras solicitações autorizadas
+                    localStorage.setItem('token', response.data.jwt);
+
+                    this.$router.push('/home');
+                } catch (error) {
+                    console.error('Erro ao fazer login:', error);
+                }
+            }
         },
         mounted(){
             

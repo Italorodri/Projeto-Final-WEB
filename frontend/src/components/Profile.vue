@@ -7,17 +7,17 @@
         <div class="dados_apagar">
             <div class="dados_pessoais">
                 <div class="col">
-                    <p class="espaco_up"><strong>Nome:</strong> Nome de usuário</p>
-                    <p><strong>E-mail:</strong> useremail@gmail.com</p>
-                    <p><strong>Telefone:</strong> DD 9XXXXXXXX</p>
+                    <p class="espaco_up"><strong>Nome:</strong> {{ usuario.nome }}</p>
+                    <p><strong>E-mail:</strong> {{ usuario.email }}</p>
+                    <p><strong>Telefone:</strong> {{ usuario.telefone }}</p>
                 </div>
                 <div class="col">
-                    <p class="espaco_up"><strong>Deseja:</strong> Adotar/Colocar pra adoção</p>
+                    <p class="espaco_up"><strong>Deseja:</strong> {{ usuario.desejo }}</p>
                 </div>
             </div>
             <div class="apagar_conta">
                 <button class="editar_conta btn btn-warning" data-bs-toggle="modal" data-bs-target=".dado">Editar conta</button>
-                <button type="submit" class="excluir_conta btn btn-danger">Apagar conta</button>
+                <button type="submit" class="excluir_conta btn btn-danger" @click="excluirConta">Apagar conta</button>
             </div>
 
             <div class="modal dado" id="profileModal" tabindex="-1">
@@ -89,13 +89,15 @@
 </template>
 
 <script>
+    import axios from 'axios';
     import FotoSelect from '../components/FotoSelect.vue'
 
     export default ({
         name: "Profile",
         data() {
             return {
-                imgSelecionada: null
+                imgSelecionada: null,
+                usuario: {}
             };
         },
         components: {
@@ -106,12 +108,35 @@
                 this.imgSelecionada = imagem;
             },
             handleSubmit(e) {
-                if (!this.imgSelecionada) {
-                    e.preventDefault();
+                e.preventDefault();
 
+                if (!this.imgSelecionada) {
                     alert("Por favor, selecione uma foto");
                     return;
                 }
+
+                const nome = document.getElementById("nome").value;
+                const email = document.getElementById("email").value;
+                const senha = document.getElementById("senha").value;
+                const telefone = document.getElementById("telefone").value;
+                const dataNascimento = document.getElementById("data").value;
+                const desejo = document.getElementById("desejo").value;
+
+                axios.put('http://localhost:1337/sua-rota-no-strapi', {
+                    nome,
+                    email,
+                    senha,
+                    telefone,
+                    dataNascimento,
+                    desejo,
+                    foto: this.imgSelecionada
+                })
+                    .then(response => {
+                        console.log('Resposta do Strapi:', response.data);
+                    })
+                    .catch(error => {
+                        console.error('Erro ao enviar dados para o Strapi:', error);
+                    });
             },
             selectImage () {
                 this.$refs.fileInput.click()
@@ -134,7 +159,36 @@
             sumir(){
                 let icon = document.getElementById("icon");
                 icon.style.display = "none";
+            },
+            async buscarDadosUsuario() {
+                try {
+                    const response = await axios.get('http://localhost:1337/sua-rota-de-busca-no-strapi');
+                    this.usuario = response.data; // Atualiza os dados do usuário
+                } catch (error) {
+                    console.error('Erro ao buscar dados do usuário:', error);
+                }
+            },
+            excluirConta() {
+                if (confirm("Tem certeza de que deseja excluir sua conta? Esta ação é irreversível.")) {
+                    // Faz uma solicitação DELETE ao servidor Strapi para excluir a conta do usuário
+                    axios.delete('http://localhost:1337/sua-rota-no-strapi')
+                        .then(response => {
+                            // Mostrando a resposta
+                            console.log('Conta excluída com sucesso:', response.data);
+
+                            // Limpando as informações do usuário localmente
+                            localStorage.removeItem('token');
+                            this.$router.push("/login");
+                        })
+                        .catch(error => {
+                            console.error('Erro ao excluir conta do usuário:', error);
+                        });
+                }
             }
+        },
+        mounted() {
+            // Chama o método para buscar dados do usuário quando o componente é montado
+            this.buscarDadosUsuario();
         }
     })
 </script>

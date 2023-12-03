@@ -17,20 +17,20 @@
                     <div class="row">
                         <div class="col dados1">
                             <div class="form-floating">
-                            <input type="text" class="form-control" id="nome" placeholder="Nome" required>
-                            <label for="nome">Nome:</label>
+                                <input type="text" class="form-control" id="nome" placeholder="Nome" required>
+                                <label for="nome">Nome:</label>
                             </div>
                             <div class="form-floating">
-                            <input type="email" class="form-control" id="email" placeholder="email@example.com" required>
-                            <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" placeholder="email@example.com" required>
+                                <label for="email">Email:</label>
                             </div>
                             <div class="form-floating">
-                            <input type="password" class="form-control" id="senha" placeholder="Senha" minlength="6" required>
-                            <label for="senha">Senha:</label>
+                                <input type="password" class="form-control" id="senha" placeholder="Senha" minlength="6" required>
+                                <label for="senha">Senha:</label>
                             </div>
                             <div class="form-floating">
-                            <input type="password" class="form-control" id="confirmar" placeholder="Confirmar senha" minlength="6" required>
-                            <label for="confirmar">Confirmação de senha:</label>
+                                <input type="password" class="form-control" id="confirmar" placeholder="Confirmar senha" minlength="6" required>
+                                <label for="confirmar">Confirmação de senha:</label>
                             </div>
                             <div class="form-floating">
                                 <input type="tel" pattern="[0-9]{11}" class="form-control" id="telefone" placeholder="Nº de telefone" minlength="11" maxlength="11" required>
@@ -45,14 +45,14 @@
 
                             <div class="papelUsuario">
                                 <h6><strong>Eu desejo:</strong></h6>
-                                <select class="form-select" aria-label="Desejo">
+                                <select class="form-select" aria-label="Desejo" id="desejo">
                                     <option value="1">Colocar pra adoção</option>
                                     <option value="2">Adotar</option>
                                 </select>
                             </div>
         
                             <div class="textoTermos">
-                                <h6>Você concorda com os nossos <a class="termos">Termos de Política de Privacidade</a>?</h6>
+                                <h6>Você concorda com os nossos <span class="termos" @click="mostrarTermos" data-bs-toggle="modal" data-bs-target=".termo">Termos de Política de Privacidade</span>?</h6>
                             </div>
         
                             <div class="form-check my-2 radio">
@@ -74,27 +74,68 @@
                 </footer>
             </form>
         </div>
+
+        <div class="modal termo" id="termoModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-text descricao d-flex align-content-left">
+                                <p v-html="termosDeUso"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
 <script>
     import ImagensBG from '../components/ImagensBG.vue'
+    import axios from 'axios';
 
     export default ({
         name: "Cadastro",
         data(){
             return {
-                
+                termosDeUso: `Termos de Uso\n
+Bem-vindo ao Adote Aí!\n
+Ao usar este site, você concorda em cumprir e ficar vinculado aos seguintes termos e condições de uso. Se você não concordar com alguma parte destes termos, por favor, não use nosso site.\n
+Responsabilidade: O Adote Aí! não se responsabiliza por qualquer conteúdo impreciso ou desatualizado presente no site.\n
+Uso Adequado: Este site destina-se ao uso relacionado à adoção de animais. O uso indevido do site para atividades ilegais ou não relacionadas não é permitido.\n
+Registro: Ao se registrar, você concorda em fornecer informações precisas e atualizadas. Você é responsável pela segurança de sua conta e senha.\n
+Rescisão: Reservamo-nos o direito de encerrar contas de usuários que violem estes termos de uso.\n
+Privacidade: Suas informações pessoais serão tratadas de acordo com nossa Política de Privacidade.\n
+Alterações: Reservamo-nos o direito de modificar estes termos a qualquer momento. Recomendamos que você revise periodicamente os termos para ficar atualizado.\n
+Informações Coletadas:\n
+Dados Pessoais: Podemos coletar informações pessoais, como nome, endereço de e-mail e localização, para facilitar a adoção de animais.\n
+Uso das Informações:\n
+Finalidade: As informações coletadas serão usadas exclusivamente para facilitar o processo de adoção de animais e para melhorar nossos serviços.\n
+Compartilhamento de Informações:\n
+Terceiros: Não compartilhamos informações pessoais com terceiros sem o seu consentimento, exceto quando exigido por lei.\n
+Segurança: Implementamos medidas de segurança para proteger suas informações pessoais contra acesso não autorizado.\n
+Cookies: Podemos usar cookies para melhorar a experiência do usuário. Você pode optar por desativar os cookies nas configurações do seu navegador.\n
+Alterações na Política de Privacidade:\n
+Atualizações: Esta política pode ser atualizada de tempos em tempos.`,
             }
         },
         components:{
           ImagensBG
         },
         methods:{
-            verificarForm(e){
+            async verificarForm(e){
                 this.verifConfSenha(e);
                 this.verificarTele(e);
                 this.verificarData(e);
+
+                if (!e.defaultPrevented) {
+                    await this.criarNovoUsuario();
+                }
             },
             verifConfSenha(e){
                 let senha = document.getElementById("senha");
@@ -136,6 +177,32 @@
                         alert("É preciso ter no mínimo 18 anos para poder adotar um animal, ou colocar um para adoção");
                         return;
                     }
+
+                    //this.$router.push('/home');
+                }
+            },
+            async criarNovoUsuario() {
+                const nome = document.getElementById("nome").value;
+                const email = document.getElementById("email").value;
+                const senha = document.getElementById("senha").value;
+                const telefone = document.getElementById("telefone").value;
+                const dataNascimento = document.getElementById("data").value;
+                const desejo = document.getElementById("desejo").value;
+
+                try {
+                    const response = await axios.post('http://localhost:1337/sua-rota-no-strapi', {
+                        nome,
+                        email,
+                        senha,
+                        telefone,
+                        dataNascimento,
+                        desejo,
+                    });
+
+                    console.log('Usuário criado com sucesso:', response.data);
+                    this.$router.push("/home");
+                } catch (error) {
+                    console.error('Erro ao criar novo usuário:', error);
                 }
             },
             liberarBtn(){
@@ -156,7 +223,6 @@
                     botao.disabled = true;
                 }
             }
-            
         },
         mounted(){
             
@@ -191,6 +257,10 @@
         border: 10px solid white;
         position: absolute;
         z-index: 2;
+    }
+
+    .descricao {
+        white-space: pre-line;
     }
 
     header{
@@ -274,6 +344,7 @@
 
     .termos{
         text-decoration: underline;
+        color: blue;
     }
 
     footer{
@@ -293,6 +364,12 @@
         background-color: rgb(0, 0, 100);
         border-color: rgb(0, 0, 100);
     }
+
+    /*#inscrever router-link{
+        text-decoration-color: white;
+        color: white;
+        text-decoration: none;
+    }*/
 
     a{
         text-decoration: none;
