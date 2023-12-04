@@ -46,8 +46,8 @@ Strapi
 
 | Entidade   | Criação | Leitura | Atualização | Remoção |
 | ---------- | ------- | ------- | ----------- | ------- |
-| Usuario |  X      |        |             |       |
-| Daoção  | X       | X        | X           | X       |
+| Usuário |  X      |        |             |       |
+| Doação  | X       | X        | X           | X       |
 | Comentário  | X       |  X       |             |         |
 
 
