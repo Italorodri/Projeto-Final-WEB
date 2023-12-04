@@ -24,7 +24,7 @@ Comentário
 
 ## :triangular_flag_on_post: Principais funcionalidades da aplicação
 
-Usuários não registrado poderão visualizar a lista de animais para adoção e também os comentários realizados pelos usuários registrados. Como também poderão ver as páginas que falam sobre o ambiente (ajudas, perguntas, sobre nós).
+Usuários não registrado poderão visualizar a lista de animais para adoção e também os comentários realizados pelos usuários registrados. 
 
 Usuário registrado poderá adotar algum animal da lista, como também pode colocar animais para adoção. Além disso poderá realizar comentários sobre algum animal. Esse usuário também poderá deletar, editar e remover os animais.
 
