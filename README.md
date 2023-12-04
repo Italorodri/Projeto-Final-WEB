@@ -56,7 +56,7 @@ Strapi
 | Método HTTP | URL            |
 | ----------- | -------------- |
 | GET         | api/auth/local |
-| POST        | api/auth/local/cadastro  |
+| POST        | api/auth/local/register  |
 | GET        | api/donations/  |
 | POST        | api/donations/  |
 | PUT        | api/donations/:id  |
