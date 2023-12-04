@@ -18,7 +18,7 @@ Usuário não registrado
 
 Usuário
 
-Adoção
+Doação
 
 Comentário
 
@@ -47,7 +47,7 @@ Strapi
 | Entidade   | Criação | Leitura | Atualização | Remoção |
 | ---------- | ------- | ------- | ----------- | ------- |
 | Usuario |  X      |        |             |       |
-| Adoçaao  | X       | X        | X           | X       |
+| Daoção  | X       | X        | X           | X       |
 | Comentário  | X       |  X       |             |         |
 
 
@@ -55,5 +55,10 @@ Strapi
 
 | Método HTTP | URL            |
 | ----------- | -------------- |
-| GET         | api/entidade1/ |
-| POST        | api/entidade2  |
+| GET         | api/auth/local |
+| POST        | api/auth/local/cadastro  |
+| GET        | api/donations/  |
+| POST        | api/donations/  |
+| PUT        | api/donations/:id  |
+| DELETE        | api/donations/:id  |
+| POST        | api/comentarios |
