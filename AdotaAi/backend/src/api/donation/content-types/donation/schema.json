@@ -28,12 +28,6 @@
         "images"
       ]
     },
-    "latitude": {
-      "type": "string"
-    },
-    "longitude": {
-      "type": "string"
-    },
     "status": {
       "type": "boolean",
       "required": true
