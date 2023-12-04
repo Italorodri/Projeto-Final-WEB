@@ -144,7 +144,7 @@ export default defineComponent({
     async onSubmit() {
       const formData = new FormData();
 
-      if(!(this.comentar === "")){
+      if (!(this.comentar === "")) {
         formData.append(
           "data",
           JSON.stringify({
@@ -159,7 +159,7 @@ export default defineComponent({
         this.comentarios.push(result);
 
         this.comentar = "";
-      }else{
+      } else {
         this.$toast.error("Escreva um comentário!");
       }
     },
