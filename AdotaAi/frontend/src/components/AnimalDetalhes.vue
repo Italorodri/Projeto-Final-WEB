@@ -144,20 +144,24 @@ export default defineComponent({
     async onSubmit() {
       const formData = new FormData();
 
-      formData.append(
-        "data",
-        JSON.stringify({
-          comentar: this.comentar as any,
-          autor: this.userStoreRef.userId as any,
-          doacao: Number(this.id),
-        })
-      );
+      if(!(this.comentar === "")){
+        formData.append(
+          "data",
+          JSON.stringify({
+            comentar: this.comentar as any,
+            autor: this.userStoreRef.userId as any,
+            doacao: Number(this.id),
+          })
+        );
 
-      const result = await this.commentsStoreRef.createComment(formData);
+        const result = await this.commentsStoreRef.createComment(formData);
 
-      this.comentarios.push(result);
+        this.comentarios.push(result);
 
-      this.comentar = "";
+        this.comentar = "";
+      }else{
+        this.$toast.error("Escreva um comentário!");
+      }
     },
   },
 });

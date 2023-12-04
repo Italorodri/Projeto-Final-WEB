@@ -22,7 +22,7 @@
             </div>
           </div>
         </v-col>
-        <v-col cols="12" md="6" class="d-flex justify-center align-center">
+        <v-col cols="12" md="6" class="cadastro d-flex justify-center align-center">
           <v-card-text class="mt-12">
             <h1 class="text-center mb-16">Faça seu cadastro</h1>
             <v-row align="center" justify="center">
@@ -205,5 +205,12 @@ export default Vue.extend({
 
 header {
   display: none !important;
+}
+
+@media only screen and (min-width: 770px) {
+  .cadastro{
+    display: flex;
+    justify-content: center;
+  }
 }
 </style>
