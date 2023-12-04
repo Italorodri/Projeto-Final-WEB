@@ -4,7 +4,7 @@ O projeto tem o intuito de ser ambiente de Adoção de animais, onde um usuário
 
 ## :technologist: Membros da equipe
 
-Gabriel Cavalcantes alves - 495439
+Gabriel Cavalcante Alves - 495439
 
 Ítalo Rodrigues Nascimento - 494845
 
